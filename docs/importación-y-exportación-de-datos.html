@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Importación y exportación de datos | Winter Bioinformatics School</title>
+  <meta name="description" content="Capítulo 7 Importación y exportación de datos | Winter Bioinformatics School" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Importación y exportación de datos | Winter Bioinformatics School" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="wintergenomics/wbs-rbioinfo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Importación y exportación de datos | Winter Bioinformatics School" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data.html"/>
+<link rel="next" href="instalación-de-paqueterías.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Información del curso</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formato-del-curso"><i class="fa fa-check"></i>Formato del curso</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quién-es-nuestra-audiencia"><i class="fa fa-check"></i>¿Quién es nuestra audiencia?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-requisitos"><i class="fa fa-check"></i>Pre-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="lenguajes-y-principios-de-programación.html"><a href="lenguajes-y-principios-de-programación.html"><i class="fa fa-check"></i><b>1</b> Lenguajes y principios de programación</a></li>
+<li class="chapter" data-level="2" data-path="introducción-a-r-y-rstudio-para-bioinformática.html"><a href="introducción-a-r-y-rstudio-para-bioinformática.html"><i class="fa fa-check"></i><b>2</b> Introducción a R y RStudio para bioinformática</a></li>
+<li class="chapter" data-level="3" data-path="objetos.html"><a href="objetos.html"><i class="fa fa-check"></i><b>3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="objetos.html"><a href="objetos.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.1</b> Creación de objetos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="objetos.html"><a href="objetos.html#ejercicio"><i class="fa fa-check"></i><b>3.1.1</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="objetos.html"><a href="objetos.html#tipos-de-datos-en-r"><i class="fa fa-check"></i><b>3.2</b> Tipos de datos en R</a></li>
+<li class="chapter" data-level="3.3" data-path="objetos.html"><a href="objetos.html#tipos-de-objetos-en-r"><i class="fa fa-check"></i><b>3.3</b> Tipos de objetos en R</a></li>
+<li class="chapter" data-level="3.4" data-path="objetos.html"><a href="objetos.html#atributos-de-los-objetos"><i class="fa fa-check"></i><b>3.4</b> Atributos de los objetos</a></li>
+<li class="chapter" data-level="3.5" data-path="objetos.html"><a href="objetos.html#operadores"><i class="fa fa-check"></i><b>3.5</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="objetos.html"><a href="objetos.html#operadores-artiméticos"><i class="fa fa-check"></i><b>3.5.1</b> Operadores artiméticos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="objetos.html"><a href="objetos.html#operadores-relacionales"><i class="fa fa-check"></i><b>3.5.2</b> Operadores Relacionales</a></li>
+<li class="chapter" data-level="3.5.3" data-path="objetos.html"><a href="objetos.html#operadores-lógicos"><i class="fa fa-check"></i><b>3.5.3</b> Operadores Lógicos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>4</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="vectores.html"><a href="vectores.html#tipo-de-datos-de-los-vectores"><i class="fa fa-check"></i><b>4.1</b> Tipo de datos de los vectores</a></li>
+<li class="chapter" data-level="4.2" data-path="vectores.html"><a href="vectores.html#construcción-de-vectores-secuenciales"><i class="fa fa-check"></i><b>4.2</b> Construcción de vectores secuenciales</a></li>
+<li class="chapter" data-level="4.3" data-path="vectores.html"><a href="vectores.html#manejo-de-vectores"><i class="fa fa-check"></i><b>4.3</b> Manejo de vectores</a></li>
+<li class="chapter" data-level="4.4" data-path="vectores.html"><a href="vectores.html#operaciones-con-vectores"><i class="fa fa-check"></i><b>4.4</b> Operaciones con vectores</a></li>
+<li class="chapter" data-level="4.5" data-path="vectores.html"><a href="vectores.html#combinación-de-vectores"><i class="fa fa-check"></i><b>4.5</b> Combinación de vectores</a></li>
+<li class="chapter" data-level="4.6" data-path="vectores.html"><a href="vectores.html#funciones-en-vectores"><i class="fa fa-check"></i><b>4.6</b> Funciones en vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="matrices.html"><a href="matrices.html#estructura-de-una-matriz"><i class="fa fa-check"></i><b>5.1</b> Estructura de una matriz</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html#creación-de-una-matriz"><i class="fa fa-check"></i><b>5.2</b> Creación de una matriz</a></li>
+<li class="chapter" data-level="5.3" data-path="matrices.html"><a href="matrices.html#acceder-a-los-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.3</b> Acceder a los elementos de una matriz</a></li>
+<li class="chapter" data-level="5.4" data-path="matrices.html"><a href="matrices.html#modificar-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.4</b> Modificar elementos de una matriz</a></li>
+<li class="chapter" data-level="5.5" data-path="matrices.html"><a href="matrices.html#ejercicio-1"><i class="fa fa-check"></i><b>5.5</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>6</b> Data.frames</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data.html"><a href="data.html#características-de-los-data.frames"><i class="fa fa-check"></i><b>6.1</b> Características de los data.frames</a></li>
+<li class="chapter" data-level="6.2" data-path="data.html"><a href="data.html#creación-de-un-data.frame"><i class="fa fa-check"></i><b>6.2</b> Creación de un data.frame</a></li>
+<li class="chapter" data-level="6.3" data-path="data.html"><a href="data.html#extracción-de-datos-de-un-data.frame"><i class="fa fa-check"></i><b>6.3</b> Extracción de datos de un data.frame</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data.html"><a href="data.html#extracción-de-datos-por-columna"><i class="fa fa-check"></i><b>6.3.1</b> Extracción de datos por columna</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data.html"><a href="data.html#extracción-de-datos-por-filas"><i class="fa fa-check"></i><b>6.3.2</b> Extracción de datos por filas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#combinar-data.frames"><i class="fa fa-check"></i><b>6.4</b> Combinar data.frames</a></li>
+<li class="chapter" data-level="6.5" data-path="data.html"><a href="data.html#subset-de-datos"><i class="fa fa-check"></i><b>6.5</b> Subset de datos</a></li>
+<li class="chapter" data-level="6.6" data-path="data.html"><a href="data.html#ejercicio-2"><i class="fa fa-check"></i><b>6.6</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="data.html"><a href="data.html#selección-de-elementos"><i class="fa fa-check"></i><b>6.6.1</b> Selección de Elementos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html"><i class="fa fa-check"></i><b>7</b> Importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#tipos-de-datos-que-puedo-importar-y-exportar"><i class="fa fa-check"></i><b>7.1</b> Tipos de datos que puedo importar y exportar</a></li>
+<li class="chapter" data-level="7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#de-dónde-puedo-obtener-los-datos"><i class="fa fa-check"></i><b>7.2</b> ¿De dónde puedo obtener los datos?</a></li>
+<li class="chapter" data-level="7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#cuáles-son-las-diferencias-entre-r-base-y-las-paqueterías-ampliadas"><i class="fa fa-check"></i><b>7.3</b> ¿Cuáles son las diferencias entre R base y las paqueterías ampliadas?</a></li>
+<li class="chapter" data-level="7.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#estableciendo-nuestro-directorio-de-trabajo"><i class="fa fa-check"></i><b>7.4</b> Estableciendo nuestro directorio de trabajo</a></li>
+<li class="chapter" data-level="7.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos"><i class="fa fa-check"></i><b>7.5</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-de-los-datasets-de-r"><i class="fa fa-check"></i><b>7.5.1</b> Importar datos de los datasets de R</a></li>
+<li class="chapter" data-level="7.5.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-desde-internet"><i class="fa fa-check"></i><b>7.5.2</b> Importar datos desde internet</a></li>
+<li class="chapter" data-level="7.5.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-archivos-csv"><i class="fa fa-check"></i><b>7.5.3</b> Exportar archivos CSV</a></li>
+<li class="chapter" data-level="7.5.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-csv"><i class="fa fa-check"></i><b>7.5.4</b> Archivos CSV</a></li>
+<li class="chapter" data-level="7.5.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-txt"><i class="fa fa-check"></i><b>7.5.5</b> Archivos TXT</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6</b> Archivos xlsx o de Excel</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6.1</b> Importación de datos xlsx o de Excel</a></li>
+<li class="chapter" data-level="7.6.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportación-de-datos-en-excel"><i class="fa fa-check"></i><b>7.6.2</b> Exportación de datos en Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#ejercicio-3"><i class="fa fa-check"></i><b>7.7</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-txt"><i class="fa fa-check"></i><b>7.7.1</b> Exportar como TXT</a></li>
+<li class="chapter" data-level="7.7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-csv"><i class="fa fa-check"></i><b>7.7.2</b> Exportar como CSV</a></li>
+<li class="chapter" data-level="7.7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#argumentos-al-exportar"><i class="fa fa-check"></i><b>7.7.3</b> Argumentos al exportar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html"><i class="fa fa-check"></i><b>8</b> Instalación de paqueterías</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-cran"><i class="fa fa-check"></i><b>8.1</b> Paqueterías de CRAN</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueteria-ggplot2"><i class="fa fa-check"></i><b>8.1.1</b> Instalación de paqueteria ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-bioconductor"><i class="fa fa-check"></i><b>8.2</b> Paqueterías de Bioconductor</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-biocmanager"><i class="fa fa-check"></i><b>8.2.1</b> Instalación de BiocManager</a></li>
+<li class="chapter" data-level="8.2.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueterías-de-bioconductor."><i class="fa fa-check"></i><b>8.2.2</b> Instalación de paqueterías de Bioconductor.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-github"><i class="fa fa-check"></i><b>8.3</b> Paqueterías de GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html"><i class="fa fa-check"></i><b>9</b> Gráficos en R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#tipos-de-gráficos-en-r"><i class="fa fa-check"></i><b>9.1</b> Tipos de gráficos en R</a></li>
+<li class="chapter" data-level="9.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paqueterías-para-graficar-en-r"><i class="fa fa-check"></i><b>9.2</b> Paqueterías para graficar en R</a></li>
+<li class="chapter" data-level="9.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#gráficos-de-base-r"><i class="fa fa-check"></i><b>9.3</b> Gráficos de base R</a></li>
+<li class="chapter" data-level="9.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paletas-de-colores-en-r"><i class="fa fa-check"></i><b>9.4</b> Paletas de colores en R</a></li>
+<li class="chapter" data-level="9.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#ggplot2"><i class="fa fa-check"></i><b>9.5</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#scatterplots"><i class="fa fa-check"></i><b>9.5.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="9.5.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#rcolorbrewer"><i class="fa fa-check"></i><b>9.5.2</b> RcolorBrewer</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#múltiples-gráficos-en-una-sola-imagen"><i class="fa fa-check"></i><b>9.5.3</b> Múltiples gráficos en una sola imagen</a></li>
+<li class="chapter" data-level="9.5.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#histogramas"><i class="fa fa-check"></i><b>9.5.4</b> Histogramas</a></li>
+<li class="chapter" data-level="9.5.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#boxplots"><i class="fa fa-check"></i><b>9.5.5</b> Boxplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="heatmaps.html"><a href="heatmaps.html"><i class="fa fa-check"></i><b>10</b> Heatmaps</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Winter Bioinformatics School</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="importación-y-exportación-de-datos" class="section level1" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Importación y exportación de datos</h1>
+<p>R puede importar datos de una amplia variedad de tipos de archivo con las funciones en base además de que esta capacidad es ampliada con el uso de paqueterías específicas.</p>
+<div id="tipos-de-datos-que-puedo-importar-y-exportar" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Tipos de datos que puedo importar y exportar</h2>
+<p>Existen diversos tipos de datos que se pueden importar y exportar en R. Las tres fuentes más comunes para la importación o exportación de datos son:</p>
+<p><strong>Datos en formato texto (o tabulares)</strong>
+- CSV: .csv (comma separated values o datos separados por comas)
+- TXT
+- Otros datos en formato texto</p>
+<p><strong>Formatos de otros programas (software propietario)</strong>
+- EXCEL: .xls y .xlsx
+- SPSS: .sav y .por
+- STATA: .dta
+- SAS: .sas</p>
+<p><strong>Formatos propios de R</strong>
+- R objects: .RData o .rda
+- Serialized R objects: .rds</p>
+</div>
+<div id="de-dónde-puedo-obtener-los-datos" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> ¿De dónde puedo obtener los datos?</h2>
+<ul>
+<li>Datos propios: son datos obtenidos mediante trabajo experimental por parte de mi grupo de trabajo o míos.</li>
+<li>Datos de sets de datos precargados en R</li>
+<li>Datos obtenidos de bases de datos en internet</li>
+</ul>
+<p>Las paqueterías más utilizadas para la importación y exportación de datps son:
+- r-base
+- readr
+- haven</p>
+</div>
+<div id="cuáles-son-las-diferencias-entre-r-base-y-las-paqueterías-ampliadas" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> ¿Cuáles son las diferencias entre R base y las paqueterías ampliadas?</h2>
+<p>R tiene más de 20 años. Las funciones de R-base se construyeron pensando en los estadísticos de hace 20 años (hoy se llamarían analistas de datos). Modificar las funciones de R-base haría que el código antiguo dejase de funcionar, así que la mayoría de avances y mejoras se producen en las paqueterías.</p>
+<p>Las funciones de <code>readr</code> emulan las funciones equivalentes de R-base mejorándolas y haciéndolas más consistentes; por ejemplo para leer datos CSV la función de R-base es <code>read.csv()</code>; mientras que la función equivalente de “readr” es <code>read_csv()</code>. Las dos hacen lo mismo, leer datos en formato CSV, pero las nuevas funciones tienen algunas ventajas:
+- Son más rápidas
+- Encajan más en el workflow/paradigma de la investigación reproducible.</p>
+<p>Algunas de las funciones de R-base heredan algunas opciones del sistema operativo y las variables de entorno, haciendo posible que un script que funciona en un ordenador no funcione en otro.</p>
+</div>
+<div id="estableciendo-nuestro-directorio-de-trabajo" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Estableciendo nuestro directorio de trabajo</h2>
+<p>Establecer nuestro directorio de trabajo nos permite tener una mejor organización mientras trabajamos en R.
+Para conocer nuestro directorio de trabajo actual, usamos <code>getwd()</code></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="importación-y-exportación-de-datos.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() </span></code></pre></div>
+<p>Asigna a un objeto la ruta de la carpeta de trabajo. Recuerda cambiar <em>/docs/mydir</em> por los nombres de tus carpetas de trabajo</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="importación-y-exportación-de-datos.html#cb169-1" aria-hidden="true" tabindex="-1"></a>directory <span class="ot">&lt;-</span> <span class="st">&quot;C:/docs/mydir&quot;</span> <span class="co">#Windows</span></span>
+<span id="cb169-2"><a href="importación-y-exportación-de-datos.html#cb169-2" aria-hidden="true" tabindex="-1"></a>directory <span class="ot">&lt;-</span> <span class="st">&quot;/home/users/mydir&quot;</span>  <span class="co">#Mac OS o linux</span></span></code></pre></div>
+<p><code>setwd()</code> permite ajustar el directorio de trabajo. Vamos a ajustarlo a la ruta de trabajo que guardamos en <code>directory</code></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="importación-y-exportación-de-datos.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(directory)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="importación-y-exportación-de-datos.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<p>Conocer más sobre las paqueterías</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="importación-y-exportación-de-datos.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span>readr) <span class="co">#Read Rectangular Text Data</span></span>
+<span id="cb172-2"><a href="importación-y-exportación-de-datos.html#cb172-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-3"><a href="importación-y-exportación-de-datos.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package=</span> haven) <span class="co">#Importa y Exporta &#39;SPSS&#39;, &#39;Stata&#39; y archivos &#39;SAS&#39;</span></span></code></pre></div>
+<p>Visualiza la documentación de la función read_csv de la paquetería <code>readr</code>.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="importación-y-exportación-de-datos.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(read_csv, <span class="at">package =</span> <span class="st">&quot;readr&quot;</span>)</span></code></pre></div>
+<p>A veces es conveniente saber que package contiene una función. Podemos hacerlo con la función <code>find</code> para encontrar en qué paquetería está la función <code>help</code>.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="importación-y-exportación-de-datos.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span>(<span class="st">&quot;read_csv&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;package:readr&quot;</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="importación-y-exportación-de-datos.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span>(<span class="st">&quot;read.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;package:utils&quot;</code></pre>
+</div>
+<div id="importación-de-datos" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Importación de datos</h2>
+<div id="importar-datos-de-los-datasets-de-r" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Importar datos de los datasets de R</h3>
+<p>R contiene datasets que pueden ser utilizados directamente. Para dar un vistazo a los paquetes disponibles en R usamos <code>data()</code></p>
+<p>Guardamos el listado de datasets en un data.frame llamado <code>sets</code></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="importación-y-exportación-de-datos.html#cb178-1" aria-hidden="true" tabindex="-1"></a>sets <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">data</span>()[[<span class="dv">3</span>]])</span>
+<span id="cb178-2"><a href="importación-y-exportación-de-datos.html#cb178-2" aria-hidden="true" tabindex="-1"></a>sets</span></code></pre></div>
+<pre><code>##      Package                                                        LibPath
+## 1   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 2   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 3   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 4   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 5   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 6   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 7   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 8   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 9   datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 10  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 11  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 12  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 13  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 14  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 15  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 16  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 17  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 18  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 19  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 20  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 21  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 22  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 23  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 24  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 25  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 26  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 27  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 28  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 29  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 30  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 31  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 32  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 33  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 34  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 35  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 36  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 37  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 38  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 39  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 40  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 41  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 42  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 43  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 44  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 45  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 46  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 47  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 48  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 49  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 50  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 51  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 52  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 53  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 54  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 55  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 56  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 57  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 58  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 59  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 60  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 61  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 62  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 63  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 64  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 65  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 66  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 67  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 68  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 69  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 70  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 71  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 72  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 73  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 74  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 75  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 76  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 77  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 78  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 79  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 80  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 81  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 82  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 83  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 84  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 85  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 86  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 87  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 88  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 89  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 90  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 91  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 92  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 93  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 94  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 95  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 96  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 97  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 98  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 99  datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 100 datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 101 datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 102 datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 103 datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 104 datasets /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##                       Item
+## 1            AirPassengers
+## 2                  BJsales
+## 3   BJsales.lead (BJsales)
+## 4                      BOD
+## 5                      CO2
+## 6              ChickWeight
+## 7                    DNase
+## 8           EuStockMarkets
+## 9             Formaldehyde
+## 10            HairEyeColor
+## 11            Harman23.cor
+## 12            Harman74.cor
+## 13                Indometh
+## 14            InsectSprays
+## 15          JohnsonJohnson
+## 16               LakeHuron
+## 17        LifeCycleSavings
+## 18                Loblolly
+## 19                    Nile
+## 20                  Orange
+## 21           OrchardSprays
+## 22             PlantGrowth
+## 23               Puromycin
+## 24               Seatbelts
+## 25                  Theoph
+## 26                 Titanic
+## 27             ToothGrowth
+## 28           UCBAdmissions
+## 29          UKDriverDeaths
+## 30                   UKgas
+## 31             USAccDeaths
+## 32               USArrests
+## 33          USJudgeRatings
+## 34   USPersonalExpenditure
+## 35               UScitiesD
+## 36                VADeaths
+## 37                WWWusage
+## 38             WorldPhones
+## 39             ability.cov
+## 40                airmiles
+## 41              airquality
+## 42                anscombe
+## 43                  attenu
+## 44                attitude
+## 45                 austres
+## 46       beaver1 (beavers)
+## 47       beaver2 (beavers)
+## 48                    cars
+## 49                chickwts
+## 50                     co2
+## 51                 crimtab
+## 52             discoveries
+## 53                   esoph
+## 54                    euro
+## 55       euro.cross (euro)
+## 56                eurodist
+## 57                faithful
+## 58  fdeaths (UKLungDeaths)
+## 59                  freeny
+## 60       freeny.x (freeny)
+## 61       freeny.y (freeny)
+## 62                  infert
+## 63                    iris
+## 64                   iris3
+## 65                 islands
+## 66  ldeaths (UKLungDeaths)
+## 67                      lh
+## 68                 longley
+## 69                    lynx
+## 70  mdeaths (UKLungDeaths)
+## 71                  morley
+## 72                  mtcars
+## 73                  nhtemp
+## 74                  nottem
+## 75                     npk
+## 76      occupationalStatus
+## 77                  precip
+## 78              presidents
+## 79                pressure
+## 80                  quakes
+## 81                   randu
+## 82                  rivers
+## 83                    rock
+## 84                   sleep
+## 85  stack.loss (stackloss)
+## 86     stack.x (stackloss)
+## 87               stackloss
+## 88       state.abb (state)
+## 89      state.area (state)
+## 90    state.center (state)
+## 91  state.division (state)
+## 92      state.name (state)
+## 93    state.region (state)
+## 94       state.x77 (state)
+## 95           sunspot.month
+## 96            sunspot.year
+## 97                sunspots
+## 98                   swiss
+## 99                treering
+## 100                  trees
+## 101                  uspop
+## 102                volcano
+## 103             warpbreaks
+## 104                  women
+##                                                               Title
+## 1                       Monthly Airline Passenger Numbers 1949-1960
+## 2                                 Sales Data with Leading Indicator
+## 3                                 Sales Data with Leading Indicator
+## 4                                         Biochemical Oxygen Demand
+## 5                             Carbon Dioxide Uptake in Grass Plants
+## 6                    Weight versus age of chicks on different diets
+## 7                                              Elisa assay of DNase
+## 8   Daily Closing Prices of Major European Stock Indices, 1991-1998
+## 9                                     Determination of Formaldehyde
+## 10                        Hair and Eye Color of Statistics Students
+## 11                                               Harman Example 2.3
+## 12                                               Harman Example 7.4
+## 13                                 Pharmacokinetics of Indomethacin
+## 14                                   Effectiveness of Insect Sprays
+## 15                   Quarterly Earnings per Johnson &amp; Johnson Share
+## 16                                    Level of Lake Huron 1875-1972
+## 17                             Intercountry Life-Cycle Savings Data
+## 18                                    Growth of Loblolly pine trees
+## 19                                           Flow of the River Nile
+## 20                                           Growth of Orange Trees
+## 21                                        Potency of Orchard Sprays
+## 22                       Results from an Experiment on Plant Growth
+## 23                       Reaction Velocity of an Enzymatic Reaction
+## 24                         Road Casualties in Great Britain 1969-84
+## 25                                 Pharmacokinetics of Theophylline
+## 26                            Survival of passengers on the Titanic
+## 27           The Effect of Vitamin C on Tooth Growth in Guinea Pigs
+## 28                                Student Admissions at UC Berkeley
+## 29                         Road Casualties in Great Britain 1969-84
+## 30                                     UK Quarterly Gas Consumption
+## 31                            Accidental Deaths in the US 1973-1978
+## 32                                  Violent Crime Rates by US State
+## 33        Lawyers&#39; Ratings of State Judges in the US Superior Court
+## 34                                        Personal Expenditure Data
+## 35          Distances Between European Cities and Between US Cities
+## 36                                   Death Rates in Virginia (1940)
+## 37                                        Internet Usage per Minute
+## 38                                           The World&#39;s Telephones
+## 39                                   Ability and Intelligence Tests
+## 40             Passenger Miles on Commercial US Airlines, 1937-1960
+## 41                                New York Air Quality Measurements
+## 42      Anscombe&#39;s Quartet of &#39;Identical&#39; Simple Linear Regressions
+## 43                                The Joyner-Boore Attenuation Data
+## 44                               The Chatterjee-Price Attitude Data
+## 45      Quarterly Time Series of the Number of Australian Residents
+## 46                           Body Temperature Series of Two Beavers
+## 47                           Body Temperature Series of Two Beavers
+## 48                             Speed and Stopping Distances of Cars
+## 49                                     Chicken Weights by Feed Type
+## 50                          Mauna Loa Atmospheric CO2 Concentration
+## 51                                    Student&#39;s 3000 Criminals Data
+## 52                          Yearly Numbers of Important Discoveries
+## 53                        Smoking, Alcohol and (O)esophageal Cancer
+## 54                              Conversion Rates of Euro Currencies
+## 55                              Conversion Rates of Euro Currencies
+## 56          Distances Between European Cities and Between US Cities
+## 57                                         Old Faithful Geyser Data
+## 58                      Monthly Deaths from Lung Diseases in the UK
+## 59                                            Freeny&#39;s Revenue Data
+## 60                                            Freeny&#39;s Revenue Data
+## 61                                            Freeny&#39;s Revenue Data
+## 62               Infertility after Spontaneous and Induced Abortion
+## 63                                       Edgar Anderson&#39;s Iris Data
+## 64                                       Edgar Anderson&#39;s Iris Data
+## 65                            Areas of the World&#39;s Major Landmasses
+## 66                      Monthly Deaths from Lung Diseases in the UK
+## 67                             Luteinizing Hormone in Blood Samples
+## 68                               Longley&#39;s Economic Regression Data
+## 69                         Annual Canadian Lynx trappings 1821-1934
+## 70                      Monthly Deaths from Lung Diseases in the UK
+## 71                                    Michelson Speed of Light Data
+## 72                                       Motor Trend Car Road Tests
+## 73                         Average Yearly Temperatures in New Haven
+## 74            Average Monthly Temperatures at Nottingham, 1920-1939
+## 75                           Classical N, P, K Factorial Experiment
+## 76                    Occupational Status of Fathers and their Sons
+## 77                                Annual Precipitation in US Cities
+## 78                      Quarterly Approval Ratings of US Presidents
+## 79           Vapor Pressure of Mercury as a Function of Temperature
+## 80                                Locations of Earthquakes off Fiji
+## 81                 Random Numbers from Congruential Generator RANDU
+## 82                           Lengths of Major North American Rivers
+## 83                           Measurements on Petroleum Rock Samples
+## 84                                             Student&#39;s Sleep Data
+## 85                                 Brownlee&#39;s Stack Loss Plant Data
+## 86                                 Brownlee&#39;s Stack Loss Plant Data
+## 87                                 Brownlee&#39;s Stack Loss Plant Data
+## 88                                       US State Facts and Figures
+## 89                                       US State Facts and Figures
+## 90                                       US State Facts and Figures
+## 91                                       US State Facts and Figures
+## 92                                       US State Facts and Figures
+## 93                                       US State Facts and Figures
+## 94                                       US State Facts and Figures
+## 95                     Monthly Sunspot Data, from 1749 to &quot;Present&quot;
+## 96                                   Yearly Sunspot Data, 1700-1988
+## 97                               Monthly Sunspot Numbers, 1749-1983
+## 98         Swiss Fertility and Socioeconomic Indicators (1888) Data
+## 99                                 Yearly Treering Data, -6000-1979
+## 100              Diameter, Height and Volume for Black Cherry Trees
+## 101                           Populations Recorded by the US Census
+## 102       Topographic Information on Auckland&#39;s Maunga Whau Volcano
+## 103                     The Number of Breaks in Yarn during Weaving
+## 104                  Average Heights and Weights for American Women</code></pre>
+<p>Conocer la información de los paquetes disponibles</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="importación-y-exportación-de-datos.html#cb180-1" aria-hidden="true" tabindex="-1"></a>paquetes <span class="ot">&lt;-</span> <span class="fu">library</span>(<span class="at">help =</span> <span class="st">&quot;datasets&quot;</span>)</span>
+<span id="cb180-2"><a href="importación-y-exportación-de-datos.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(paquetes<span class="sc">$</span>info[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;AirPassengers           Monthly Airline Passenger Numbers 1949-1960&quot;   
+## [2] &quot;BJsales                 Sales Data with Leading Indicator&quot;             
+## [3] &quot;BOD                     Biochemical Oxygen Demand&quot;                     
+## [4] &quot;CO2                     Carbon Dioxide Uptake in Grass Plants&quot;         
+## [5] &quot;ChickWeight             Weight versus age of chicks on different diets&quot;
+## [6] &quot;DNase                   Elisa assay of DNase&quot;</code></pre>
+<p>Cargar sets de datos directamente de estas bases</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="importación-y-exportación-de-datos.html#cb182-1" aria-hidden="true" tabindex="-1"></a>datos_R<span class="ot">&lt;-</span> iris</span>
+<span id="cb182-2"><a href="importación-y-exportación-de-datos.html#cb182-2" aria-hidden="true" tabindex="-1"></a>datos_R  </span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+<p>Conocer los nombres de las columnas</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="importación-y-exportación-de-datos.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos_R)</span></code></pre></div>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>Visualizar las primeras filas de la tabla</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="importación-y-exportación-de-datos.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_R)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="importación-y-exportación-de-datos.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+</div>
+<div id="importar-datos-desde-internet" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Importar datos desde internet</h3>
+<p>Esta base de datos de cáncer de mama se obtuvo de la Universidad de Wisconsin del Dr. William Wolberg. El conjunto de datos provienen de un estudio de cáncer de mama en Wisconsin. Hay 681 casos de tumores potencialmente cancerosos, de los cuales 238 son realmente malignos. Cada característica se evalúa en una escala del 1 al 10, siendo 1 el más cercano a benigno y 10 el más cercano a maligno.</p>
+<p>Para descargar archivos de internet, usamos la función <code>download.file()</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="importación-y-exportación-de-datos.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">&quot;download.file&quot;</span>)</span></code></pre></div>
+<p>La función <code>download.file()</code> pide como argumento la url o la dirección de internet del archivo que queremos descargar y en dest, el nombre que tendrá el archivo en nuestra computadora.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="importación-y-exportación-de-datos.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<span id="cb191-2"><a href="importación-y-exportación-de-datos.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">url =</span> <span class="st">&quot;https://raw.githubusercontent.com/jboscomendoza/r-principiantes-bookdown/master/datos/breast-cancer-wis.data&quot;</span>, </span>
+<span id="cb191-3"><a href="importación-y-exportación-de-datos.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dest =</span> <span class="st">&quot;breast-cancer-wis.data&quot;</span></span>
+<span id="cb191-4"><a href="importación-y-exportación-de-datos.html#cb191-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="importación-y-exportación-de-datos.html#cb192-1" aria-hidden="true" tabindex="-1"></a>tabla_cancer<span class="ot">&lt;-</span><span class="fu">read_table</span>(<span class="st">&quot;breast-cancer-wis.data&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   `1000025,5,1,1,1,2,1,3,1,1,2` = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="importación-y-exportación-de-datos.html#cb194-1" aria-hidden="true" tabindex="-1"></a>bcancer <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;breast-cancer-wis.data&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="importación-y-exportación-de-datos.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bcancer)</span></code></pre></div>
+<pre><code>##        V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11
+## 1 1000025  5  1  1  1  2  1  3  1   1   2
+## 2 1002945  5  4  4  5  7 10  3  2   1   2
+## 3 1015425  3  1  1  1  2  2  3  1   1   2
+## 4 1016277  6  8  8  1  3  4  3  7   1   2
+## 5 1017023  4  1  1  3  2  1  3  1   1   2
+## 6 1017122  8 10 10  8  7 10  9  7   1   4</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="importación-y-exportación-de-datos.html#cb197-1" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;clump_t&quot;</span>, <span class="st">&quot;u_csize&quot;</span>, <span class="st">&quot;u_cshape&quot;</span>, <span class="st">&quot;m_adh&quot;</span>, <span class="st">&quot;spcs&quot;</span>, <span class="st">&quot;b_nuc&quot;</span>, </span>
+<span id="cb197-2"><a href="importación-y-exportación-de-datos.html#cb197-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;b_chr&quot;</span>, <span class="st">&quot;n_nuc&quot;</span>, <span class="st">&quot;mit&quot;</span>, <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="importación-y-exportación-de-datos.html#cb198-1" aria-hidden="true" tabindex="-1"></a>bcancer <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;breast-cancer-wis.data&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb198-2"><a href="importación-y-exportación-de-datos.html#cb198-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col.names =</span> nombres)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="importación-y-exportación-de-datos.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bcancer)</span></code></pre></div>
+<pre><code>##        id clump_t u_csize u_cshape m_adh spcs b_nuc b_chr n_nuc mit class
+## 1 1000025       5       1        1     1    2     1     3     1   1     2
+## 2 1002945       5       4        4     5    7    10     3     2   1     2
+## 3 1015425       3       1        1     1    2     2     3     1   1     2
+## 4 1016277       6       8        8     1    3     4     3     7   1     2
+## 5 1017023       4       1        1     3    2     1     3     1   1     2
+## 6 1017122       8      10       10     8    7    10     9     7   1     4</code></pre>
+</div>
+<div id="exportar-archivos-csv" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Exportar archivos CSV</h3>
+<p>Vamos a guardar el data.frame <code>bcancer</code> como un archivo csv llamado <strong>“bcancer.csv”</strong> y <strong>bcancer2.csv</strong> utilizando el comando <code>write_._csv()</code> y <code>write.csv()</code> respectivamente. Las tablas se guardarán en nuestro directorio de trabajo actual.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="importación-y-exportación-de-datos.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(bcancer, <span class="at">file =</span> <span class="st">&quot;bcancer.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="importación-y-exportación-de-datos.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(bcancer, <span class="at">file=</span> <span class="st">&quot;bcancer2.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="archivos-csv" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Archivos CSV</h3>
+<p>También podemos trabajar con datos de archivos de texto de nuestra computadora. Importa archivos de texto plano con formato CSV (<em>coma-separated values</em>) que descargamos anteriormente. Usamos la función <code>read.csv</code> o <code>read_csv</code>.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="importación-y-exportación-de-datos.html#cb203-1" aria-hidden="true" tabindex="-1"></a>bcancer_tabla <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;bcancer.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 699 Columns: 11</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (1): b_nuc
+## dbl (10): id, clump_t, u_csize, u_cshape, m_adh, spcs, b_chr, n_nuc, mit, class</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="importación-y-exportación-de-datos.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bcancer_tabla)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##        id clump_t u_csize u_cshape m_adh  spcs b_nuc b_chr n_nuc   mit class
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1000025       5       1        1     1     2 1         3     1     1     2
+## 2 1002945       5       4        4     5     7 10        3     2     1     2
+## 3 1015425       3       1        1     1     2 2         3     1     1     2
+## 4 1016277       6       8        8     1     3 4         3     7     1     2
+## 5 1017023       4       1        1     3     2 1         3     1     1     2
+## 6 1017122       8      10       10     8     7 10        9     7     1     4</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="importación-y-exportación-de-datos.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bcancer_tabla)</span></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;       &quot;clump_t&quot;  &quot;u_csize&quot;  &quot;u_cshape&quot; &quot;m_adh&quot;    &quot;spcs&quot;    
+##  [7] &quot;b_nuc&quot;    &quot;b_chr&quot;    &quot;n_nuc&quot;    &quot;mit&quot;      &quot;class&quot;</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="importación-y-exportación-de-datos.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bcancer_tabla)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##        id clump_t u_csize u_cshape m_adh  spcs b_nuc b_chr n_nuc   mit class
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1000025       5       1        1     1     2 1         3     1     1     2
+## 2 1002945       5       4        4     5     7 10        3     2     1     2
+## 3 1015425       3       1        1     1     2 2         3     1     1     2
+## 4 1016277       6       8        8     1     3 4         3     7     1     2
+## 5 1017023       4       1        1     3     2 1         3     1     1     2
+## 6 1017122       8      10       10     8     7 10        9     7     1     4</code></pre>
+<p>Algunas veces los datos tienen ciertos problemas que hay que arreglar para importar correctamente los datos a R. <code>read_csv()</code> tiene opciones que facilitan la importación de archivos CSV:</p>
+<ul>
+<li><p><code>col_names</code>: <code>read_csv()</code> asume que la primera fila contiene los nombres de las variables. Esto puede cambiarse con <strong><code>col_names = FALSE</code></strong>. También puedes proveer los nombres a las variables (o columnas) con <code>col_names = c("X1", "X2")</code></p></li>
+<li><p><code>skip</code>:<code>read_csv()</code> por defecto importa todas las filas del archivo, pero puedes hacer que comience a importar en la fila que quieras con <code>skip = n</code></p></li>
+<li><p><code>na</code>: En algunos ficheros con datos tabulares, los NAs se especifican con algún carácter. Esto podemos tratarlo al leer los datos con el argumento <code>na = "xxx"</code></p></li>
+</ul>
+</div>
+<div id="archivos-txt" class="section level3" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Archivos TXT</h3>
+<p>Importa y exporta los archivos de texto plano con formato de tabla (data.frame). Exportemos la tabla anterior como archivo txt usando <code>write.table</code>.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="importación-y-exportación-de-datos.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x =</span> bcancer, <span class="at">file =</span> <span class="st">&quot;bcancer.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, </span>
+<span id="cb213-2"><a href="importación-y-exportación-de-datos.html#cb213-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Para importar un archivo txt, usamos <code>read.table</code>. El argumento <code>header</code> permite incorporar el encabezado del archivo que queremos importar mientras que el argumento <code>sep</code>. En el siguiente comando, el argumento <code>sep=","</code> le indica a R que nuestros datos están separados por el símbolo <strong>“,”</strong> o <em>coma</em>.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="importación-y-exportación-de-datos.html#cb214-1" aria-hidden="true" tabindex="-1"></a>bcancer_txt <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;bcancer.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="importación-y-exportación-de-datos.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bcancer_txt)</span></code></pre></div>
+<pre><code>##        id clump_t u_csize u_cshape m_adh spcs b_nuc b_chr n_nuc mit class
+## 1 1000025       5       1        1     1    2     1     3     1   1     2
+## 2 1002945       5       4        4     5    7    10     3     2   1     2
+## 3 1015425       3       1        1     1    2     2     3     1   1     2
+## 4 1016277       6       8        8     1    3     4     3     7   1     2
+## 5 1017023       4       1        1     3    2     1     3     1   1     2
+## 6 1017122       8      10       10     8    7    10     9     7   1     4</code></pre>
+</div>
+</div>
+<div id="archivos-xlsx-o-de-excel" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Archivos xlsx o de Excel</h2>
+<p>Para importar o exportar archivos de Excel, es necesario utilizar la paquetería <code>"openxlsx"</code> que permite trabajar con documentos de Excel en R. La instalación de paqueterías se realiza sólo una vez. Una vez que la librería o paquetería esté instalada, puedes omitir este paso.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="importación-y-exportación-de-datos.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;openxlsx&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Ahora cargaremos las paqueterías. El llamado de librerías deberá hacerse cada que inicies una nueva sesión en R.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="importación-y-exportación-de-datos.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
+<div id="importación-de-datos-xlsx-o-de-excel" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Importación de datos xlsx o de Excel</h3>
+<p>Importaremos un nuevo set de datos de Excel que puedes descargar de <a href="https://drive.google.com/u/0/uc?id=1DmLiZZGq_MVkLYCMZ7rdeHydUZAoP-YW&amp;export=download">aquí</a>. Recuerda guardarlos en tu carpeta de trabajo.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="importación-y-exportación-de-datos.html#cb219-1" aria-hidden="true" tabindex="-1"></a>datosXLSX <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;iris.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="importación-y-exportación-de-datos.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datosXLSX)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9           3          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5            5         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="exportación-de-datos-en-excel" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Exportación de datos en Excel</h3>
+<p>Vamos a exportar el data.frame <code>datosXLSX</code> que creamos anteriormente como un archivo de Excel llamado <strong>“datos.xlsx”</strong> utilizando el comando <code>write.xlsx()</code>. El archivo se guardará en nuestro directorio de trabajo actual.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="importación-y-exportación-de-datos.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(tablaDE, <span class="st">&quot;datos.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="ejercicio-3" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Ejercicio</h2>
+<p>Vamos a crear un data.frame para practicar cómo exportar los datos.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="importación-y-exportación-de-datos.html#cb223-1" aria-hidden="true" tabindex="-1"></a>DosisX <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">46</span>, <span class="dv">20</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">63</span>)</span>
+<span id="cb223-2"><a href="importación-y-exportación-de-datos.html#cb223-2" aria-hidden="true" tabindex="-1"></a>DosisY <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">50</span>, <span class="dv">70</span>, <span class="dv">70</span>, <span class="dv">63</span>)</span>
+<span id="cb223-3"><a href="importación-y-exportación-de-datos.html#cb223-3" aria-hidden="true" tabindex="-1"></a>Lcelular <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MCF7&quot;</span>, <span class="st">&quot;Hela&quot;</span>, <span class="st">&quot;IPC-366&quot;</span>, <span class="st">&quot;T47D&quot;</span>, <span class="st">&quot;ZR75-1&quot;</span>)</span>
+<span id="cb223-4"><a href="importación-y-exportación-de-datos.html#cb223-4" aria-hidden="true" tabindex="-1"></a>tablaDE <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(DosisX, DosisY, Lcelular)</span>
+<span id="cb223-5"><a href="importación-y-exportación-de-datos.html#cb223-5" aria-hidden="true" tabindex="-1"></a>tablaDE</span></code></pre></div>
+<pre><code>##   DosisX DosisY Lcelular
+## 1     46      6     MCF7
+## 2     20     50     Hela
+## 3     80     70  IPC-366
+## 4    100     70     T47D
+## 5     63     63   ZR75-1</code></pre>
+<div id="exportar-como-txt" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> Exportar como TXT</h3>
+<p>Vamos a guardar el data.frame <code>tablaDE</code> como un archivo de texto llamado <strong>“datos.txt”</strong> utilizando el comando <code>write.table()</code>. La tabla se guardará en nuestro directorio de trabajo actual.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="importación-y-exportación-de-datos.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(tablaDE, <span class="st">&quot;datos.txt&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exportar-como-csv" class="section level3" number="7.7.2">
+<h3><span class="header-section-number">7.7.2</span> Exportar como CSV</h3>
+<p>Vamos a guardar el data.frame <code>tablaDE</code> como un archivo csv llamado <strong>“datos.csv”</strong> utilizando el comando <code>write.csv()</code>. La tabla se guardará en nuestro directorio de trabajo actual.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="importación-y-exportación-de-datos.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(tablaDE, <span class="st">&quot;datos.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="argumentos-al-exportar" class="section level3" number="7.7.3">
+<h3><span class="header-section-number">7.7.3</span> Argumentos al exportar</h3>
+<p>Así como al importar archivos existen diversos argumentos que podemos utilizar para darles ciertas indicaciones a R, también lo podemos hacer al momento de exportar los datos. Los siguientes argumentos se pueden usar con <code>write.csv()</code> y <code>write.table()</code>.</p>
+<p><code>row.names=FALSE</code> nos permite suprimir los nombres de las filas</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="importación-y-exportación-de-datos.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(tablaDE, <span class="st">&quot;datos1.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Para indicar la separación del archivo utilizamos <code>sep</code>. Vamos a usar la tabulación como separador poniendo <code>sep="\t"</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="importación-y-exportación-de-datos.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(tablaDE, <span class="st">&quot;datos2.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<p>Para suprimir los nombres de las columnas, usamos <code>col.names=FALSE</code></p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="importación-y-exportación-de-datos.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(tablaDE, <span class="st">&quot;datos3.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">col.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="instalación-de-paqueterías.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": null,
+"position": "fixed"
+});
+});
+</script>
+
+</body>
+
+</html>

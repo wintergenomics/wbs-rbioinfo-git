@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Data.frames | Winter Bioinformatics School</title>
+  <meta name="description" content="Capítulo 6 Data.frames | Winter Bioinformatics School" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Data.frames | Winter Bioinformatics School" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="wintergenomics/wbs-rbioinfo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Data.frames | Winter Bioinformatics School" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="matrices.html"/>
+<link rel="next" href="importación-y-exportación-de-datos.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Información del curso</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formato-del-curso"><i class="fa fa-check"></i>Formato del curso</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quién-es-nuestra-audiencia"><i class="fa fa-check"></i>¿Quién es nuestra audiencia?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-requisitos"><i class="fa fa-check"></i>Pre-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="lenguajes-y-principios-de-programación.html"><a href="lenguajes-y-principios-de-programación.html"><i class="fa fa-check"></i><b>1</b> Lenguajes y principios de programación</a></li>
+<li class="chapter" data-level="2" data-path="introducción-a-r-y-rstudio-para-bioinformática.html"><a href="introducción-a-r-y-rstudio-para-bioinformática.html"><i class="fa fa-check"></i><b>2</b> Introducción a R y RStudio para bioinformática</a></li>
+<li class="chapter" data-level="3" data-path="objetos.html"><a href="objetos.html"><i class="fa fa-check"></i><b>3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="objetos.html"><a href="objetos.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.1</b> Creación de objetos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="objetos.html"><a href="objetos.html#ejercicio"><i class="fa fa-check"></i><b>3.1.1</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="objetos.html"><a href="objetos.html#tipos-de-datos-en-r"><i class="fa fa-check"></i><b>3.2</b> Tipos de datos en R</a></li>
+<li class="chapter" data-level="3.3" data-path="objetos.html"><a href="objetos.html#tipos-de-objetos-en-r"><i class="fa fa-check"></i><b>3.3</b> Tipos de objetos en R</a></li>
+<li class="chapter" data-level="3.4" data-path="objetos.html"><a href="objetos.html#atributos-de-los-objetos"><i class="fa fa-check"></i><b>3.4</b> Atributos de los objetos</a></li>
+<li class="chapter" data-level="3.5" data-path="objetos.html"><a href="objetos.html#operadores"><i class="fa fa-check"></i><b>3.5</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="objetos.html"><a href="objetos.html#operadores-artiméticos"><i class="fa fa-check"></i><b>3.5.1</b> Operadores artiméticos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="objetos.html"><a href="objetos.html#operadores-relacionales"><i class="fa fa-check"></i><b>3.5.2</b> Operadores Relacionales</a></li>
+<li class="chapter" data-level="3.5.3" data-path="objetos.html"><a href="objetos.html#operadores-lógicos"><i class="fa fa-check"></i><b>3.5.3</b> Operadores Lógicos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>4</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="vectores.html"><a href="vectores.html#tipo-de-datos-de-los-vectores"><i class="fa fa-check"></i><b>4.1</b> Tipo de datos de los vectores</a></li>
+<li class="chapter" data-level="4.2" data-path="vectores.html"><a href="vectores.html#construcción-de-vectores-secuenciales"><i class="fa fa-check"></i><b>4.2</b> Construcción de vectores secuenciales</a></li>
+<li class="chapter" data-level="4.3" data-path="vectores.html"><a href="vectores.html#manejo-de-vectores"><i class="fa fa-check"></i><b>4.3</b> Manejo de vectores</a></li>
+<li class="chapter" data-level="4.4" data-path="vectores.html"><a href="vectores.html#operaciones-con-vectores"><i class="fa fa-check"></i><b>4.4</b> Operaciones con vectores</a></li>
+<li class="chapter" data-level="4.5" data-path="vectores.html"><a href="vectores.html#combinación-de-vectores"><i class="fa fa-check"></i><b>4.5</b> Combinación de vectores</a></li>
+<li class="chapter" data-level="4.6" data-path="vectores.html"><a href="vectores.html#funciones-en-vectores"><i class="fa fa-check"></i><b>4.6</b> Funciones en vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="matrices.html"><a href="matrices.html#estructura-de-una-matriz"><i class="fa fa-check"></i><b>5.1</b> Estructura de una matriz</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html#creación-de-una-matriz"><i class="fa fa-check"></i><b>5.2</b> Creación de una matriz</a></li>
+<li class="chapter" data-level="5.3" data-path="matrices.html"><a href="matrices.html#acceder-a-los-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.3</b> Acceder a los elementos de una matriz</a></li>
+<li class="chapter" data-level="5.4" data-path="matrices.html"><a href="matrices.html#modificar-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.4</b> Modificar elementos de una matriz</a></li>
+<li class="chapter" data-level="5.5" data-path="matrices.html"><a href="matrices.html#ejercicio-1"><i class="fa fa-check"></i><b>5.5</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>6</b> Data.frames</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data.html"><a href="data.html#características-de-los-data.frames"><i class="fa fa-check"></i><b>6.1</b> Características de los data.frames</a></li>
+<li class="chapter" data-level="6.2" data-path="data.html"><a href="data.html#creación-de-un-data.frame"><i class="fa fa-check"></i><b>6.2</b> Creación de un data.frame</a></li>
+<li class="chapter" data-level="6.3" data-path="data.html"><a href="data.html#extracción-de-datos-de-un-data.frame"><i class="fa fa-check"></i><b>6.3</b> Extracción de datos de un data.frame</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data.html"><a href="data.html#extracción-de-datos-por-columna"><i class="fa fa-check"></i><b>6.3.1</b> Extracción de datos por columna</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data.html"><a href="data.html#extracción-de-datos-por-filas"><i class="fa fa-check"></i><b>6.3.2</b> Extracción de datos por filas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#combinar-data.frames"><i class="fa fa-check"></i><b>6.4</b> Combinar data.frames</a></li>
+<li class="chapter" data-level="6.5" data-path="data.html"><a href="data.html#subset-de-datos"><i class="fa fa-check"></i><b>6.5</b> Subset de datos</a></li>
+<li class="chapter" data-level="6.6" data-path="data.html"><a href="data.html#ejercicio-2"><i class="fa fa-check"></i><b>6.6</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="data.html"><a href="data.html#selección-de-elementos"><i class="fa fa-check"></i><b>6.6.1</b> Selección de Elementos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html"><i class="fa fa-check"></i><b>7</b> Importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#tipos-de-datos-que-puedo-importar-y-exportar"><i class="fa fa-check"></i><b>7.1</b> Tipos de datos que puedo importar y exportar</a></li>
+<li class="chapter" data-level="7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#de-dónde-puedo-obtener-los-datos"><i class="fa fa-check"></i><b>7.2</b> ¿De dónde puedo obtener los datos?</a></li>
+<li class="chapter" data-level="7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#cuáles-son-las-diferencias-entre-r-base-y-las-paqueterías-ampliadas"><i class="fa fa-check"></i><b>7.3</b> ¿Cuáles son las diferencias entre R base y las paqueterías ampliadas?</a></li>
+<li class="chapter" data-level="7.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#estableciendo-nuestro-directorio-de-trabajo"><i class="fa fa-check"></i><b>7.4</b> Estableciendo nuestro directorio de trabajo</a></li>
+<li class="chapter" data-level="7.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos"><i class="fa fa-check"></i><b>7.5</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-de-los-datasets-de-r"><i class="fa fa-check"></i><b>7.5.1</b> Importar datos de los datasets de R</a></li>
+<li class="chapter" data-level="7.5.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-desde-internet"><i class="fa fa-check"></i><b>7.5.2</b> Importar datos desde internet</a></li>
+<li class="chapter" data-level="7.5.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-archivos-csv"><i class="fa fa-check"></i><b>7.5.3</b> Exportar archivos CSV</a></li>
+<li class="chapter" data-level="7.5.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-csv"><i class="fa fa-check"></i><b>7.5.4</b> Archivos CSV</a></li>
+<li class="chapter" data-level="7.5.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-txt"><i class="fa fa-check"></i><b>7.5.5</b> Archivos TXT</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6</b> Archivos xlsx o de Excel</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6.1</b> Importación de datos xlsx o de Excel</a></li>
+<li class="chapter" data-level="7.6.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportación-de-datos-en-excel"><i class="fa fa-check"></i><b>7.6.2</b> Exportación de datos en Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#ejercicio-3"><i class="fa fa-check"></i><b>7.7</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-txt"><i class="fa fa-check"></i><b>7.7.1</b> Exportar como TXT</a></li>
+<li class="chapter" data-level="7.7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-csv"><i class="fa fa-check"></i><b>7.7.2</b> Exportar como CSV</a></li>
+<li class="chapter" data-level="7.7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#argumentos-al-exportar"><i class="fa fa-check"></i><b>7.7.3</b> Argumentos al exportar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html"><i class="fa fa-check"></i><b>8</b> Instalación de paqueterías</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-cran"><i class="fa fa-check"></i><b>8.1</b> Paqueterías de CRAN</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueteria-ggplot2"><i class="fa fa-check"></i><b>8.1.1</b> Instalación de paqueteria ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-bioconductor"><i class="fa fa-check"></i><b>8.2</b> Paqueterías de Bioconductor</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-biocmanager"><i class="fa fa-check"></i><b>8.2.1</b> Instalación de BiocManager</a></li>
+<li class="chapter" data-level="8.2.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueterías-de-bioconductor."><i class="fa fa-check"></i><b>8.2.2</b> Instalación de paqueterías de Bioconductor.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-github"><i class="fa fa-check"></i><b>8.3</b> Paqueterías de GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html"><i class="fa fa-check"></i><b>9</b> Gráficos en R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#tipos-de-gráficos-en-r"><i class="fa fa-check"></i><b>9.1</b> Tipos de gráficos en R</a></li>
+<li class="chapter" data-level="9.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paqueterías-para-graficar-en-r"><i class="fa fa-check"></i><b>9.2</b> Paqueterías para graficar en R</a></li>
+<li class="chapter" data-level="9.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#gráficos-de-base-r"><i class="fa fa-check"></i><b>9.3</b> Gráficos de base R</a></li>
+<li class="chapter" data-level="9.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paletas-de-colores-en-r"><i class="fa fa-check"></i><b>9.4</b> Paletas de colores en R</a></li>
+<li class="chapter" data-level="9.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#ggplot2"><i class="fa fa-check"></i><b>9.5</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#scatterplots"><i class="fa fa-check"></i><b>9.5.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="9.5.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#rcolorbrewer"><i class="fa fa-check"></i><b>9.5.2</b> RcolorBrewer</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#múltiples-gráficos-en-una-sola-imagen"><i class="fa fa-check"></i><b>9.5.3</b> Múltiples gráficos en una sola imagen</a></li>
+<li class="chapter" data-level="9.5.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#histogramas"><i class="fa fa-check"></i><b>9.5.4</b> Histogramas</a></li>
+<li class="chapter" data-level="9.5.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#boxplots"><i class="fa fa-check"></i><b>9.5.5</b> Boxplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="heatmaps.html"><a href="heatmaps.html"><i class="fa fa-check"></i><b>10</b> Heatmaps</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Winter Bioinformatics School</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data.frames" class="section level1" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Data.frames</h1>
+<p>Es una estructura de tipo tabular, que permite el uso de diferentes tipos de datos. Combina listas de vectores de la misma longitud. Para crear un data.frame usamos la función <code>data.frame</code>.
+Ejemplo, en una encuesta se tienen preguntas como las siguientes con sus respectivas respuestas:</p>
+<ul>
+<li>¿Está vacunado para Influenza? : <strong>sí/no (lógicos)</strong></li>
+<li>¿Año de nacimiento? : <strong>1990, 1981, 2000, 1952 (numérico)</strong></li>
+<li>¿Nacionalidad?: <strong>Chi, Rus, Mex, USA (caracteres)</strong></li>
+</ul>
+<div id="características-de-los-data.frames" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Características de los data.frames</h2>
+<ul>
+<li>Los nombres de columna no deben estar vacíos</li>
+<li>Los nombres de las filas deben ser <strong>únicos</strong></li>
+<li>Los datos almacenados en un dataframe pueden ser de tipo numérico, factor o carácter.</li>
+<li>Cada columna debe contener el mismo número de elementos de datos</li>
+</ul>
+</div>
+<div id="creación-de-un-data.frame" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Creación de un data.frame</h2>
+<p>Crear data.frame <em>“TipoDatos”</em> a partir de los siguientes vectores:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data.html#cb115-1" aria-hidden="true" tabindex="-1"></a>origen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Chi&quot;</span>, <span class="st">&quot;Rus&quot;</span>, <span class="st">&quot;Mex&quot;</span>, <span class="st">&quot;USA&quot;</span>)</span>
+<span id="cb115-2"><a href="data.html#cb115-2" aria-hidden="true" tabindex="-1"></a>vacunado <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb115-3"><a href="data.html#cb115-3" aria-hidden="true" tabindex="-1"></a>fecha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1990&quot;</span>, <span class="st">&quot;1981&quot;</span>, <span class="st">&quot;2000&quot;</span>, <span class="st">&quot;1952&quot;</span>)</span>
+<span id="cb115-4"><a href="data.html#cb115-4" aria-hidden="true" tabindex="-1"></a>TipoDatos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(origen, vacunado, fecha)</span>
+<span id="cb115-5"><a href="data.html#cb115-5" aria-hidden="true" tabindex="-1"></a>TipoDatos</span></code></pre></div>
+<pre><code>##   origen vacunado fecha
+## 1    Chi    FALSE  1990
+## 2    Rus     TRUE  1981
+## 3    Mex     TRUE  2000
+## 4    USA     TRUE  1952</code></pre>
+<p><code>str()</code> Brinda información sobre la estructura del data.frame.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(TipoDatos)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
+##  $ origen  : chr  &quot;Chi&quot; &quot;Rus&quot; &quot;Mex&quot; &quot;USA&quot;
+##  $ vacunado: logi  FALSE TRUE TRUE TRUE
+##  $ fecha   : chr  &quot;1990&quot; &quot;1981&quot; &quot;2000&quot; &quot;1952&quot;</code></pre>
+<p>Para acceder a una columna de un data.frame, utilizamos el símbolo de pesos:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data.html#cb119-1" aria-hidden="true" tabindex="-1"></a>TipoDatos<span class="sc">$</span>fecha</span></code></pre></div>
+<pre><code>## [1] &quot;1990&quot; &quot;1981&quot; &quot;2000&quot; &quot;1952&quot;</code></pre>
+<p>Otra forma de acceder a los elementos de un data.frames es mediante corchetes. Recordemos que esta nomenclatura la estudiamos en el capítulo anterior de Matrices.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data.html#cb121-1" aria-hidden="true" tabindex="-1"></a>TipoDatos[,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;1990&quot; &quot;1981&quot; &quot;2000&quot; &quot;1952&quot;</code></pre>
+<p>De manera similar, para acceder a una fila de un data.frame utilizamos los corchetes, donde <code>[fila, columna]</code>.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data.html#cb123-1" aria-hidden="true" tabindex="-1"></a>TipoDatos[<span class="dv">2</span>,]</span></code></pre></div>
+<pre><code>##   origen vacunado fecha
+## 2    Rus     TRUE  1981</code></pre>
+</div>
+<div id="extracción-de-datos-de-un-data.frame" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Extracción de datos de un data.frame</h2>
+<div id="extracción-de-datos-por-columna" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Extracción de datos por columna</h3>
+<p>Crear un nuevo data.frame llamado “result” que contenga todos los datos de las columnas origen y fecha.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data.html#cb125-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(TipoDatos<span class="sc">$</span>origen,TipoDatos<span class="sc">$</span>fecha)</span>
+<span id="cb125-2"><a href="data.html#cb125-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>##   TipoDatos.origen TipoDatos.fecha
+## 1              Chi            1990
+## 2              Rus            1981
+## 3              Mex            2000
+## 4              USA            1952</code></pre>
+</div>
+<div id="extracción-de-datos-por-filas" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Extracción de datos por filas</h3>
+<p>Extraer todos los datos de las filas 1 y 2.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data.html#cb127-1" aria-hidden="true" tabindex="-1"></a>subsets <span class="ot">&lt;-</span> TipoDatos[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,]</span>
+<span id="cb127-2"><a href="data.html#cb127-2" aria-hidden="true" tabindex="-1"></a>subsets</span></code></pre></div>
+<pre><code>##   origen vacunado fecha
+## 1    Chi    FALSE  1990
+## 2    Rus     TRUE  1981</code></pre>
+</div>
+</div>
+<div id="combinar-data.frames" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Combinar data.frames</h2>
+<p>Creamos un segundo data.frame llamado <em>“TipoDatos2”</em>.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data.html#cb129-1" aria-hidden="true" tabindex="-1"></a>cobertura <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;NA&quot;</span>, <span class="st">&quot;Pandemica&quot;</span>, <span class="st">&quot;Estacional&quot;</span>, <span class="st">&quot;NA&quot;</span>)</span>
+<span id="cb129-2"><a href="data.html#cb129-2" aria-hidden="true" tabindex="-1"></a>edad <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;60&quot;</span>, <span class="st">&quot;50&quot;</span>, <span class="st">&quot;80&quot;</span>, <span class="st">&quot;20&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb129-3"><a href="data.html#cb129-3" aria-hidden="true" tabindex="-1"></a>TipoDatos2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cobertura, edad)</span>
+<span id="cb129-4"><a href="data.html#cb129-4" aria-hidden="true" tabindex="-1"></a>TipoDatos2</span></code></pre></div>
+<pre><code>##    cobertura edad
+## 1         NA   60
+## 2  Pandemica   50
+## 3 Estacional   80
+## 4         NA   20</code></pre>
+<p>Con <code>cbind()</code> unimos dos data.frames del mismo tamaño mediante columnas. En este caso uniremos los data.frames <code>TipoDatos</code> y <code>TipoDatos2</code>.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data.html#cb131-1" aria-hidden="true" tabindex="-1"></a>datosfinales <span class="ot">&lt;-</span> <span class="fu">cbind</span>(TipoDatos,TipoDatos2)</span>
+<span id="cb131-2"><a href="data.html#cb131-2" aria-hidden="true" tabindex="-1"></a>datosfinales</span></code></pre></div>
+<pre><code>##   origen vacunado fecha  cobertura edad
+## 1    Chi    FALSE  1990         NA   60
+## 2    Rus     TRUE  1981  Pandemica   50
+## 3    Mex     TRUE  2000 Estacional   80
+## 4    USA     TRUE  1952         NA   20</code></pre>
+</div>
+<div id="subset-de-datos" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Subset de datos</h2>
+<p><code>subset()</code> permite filtrar o extraer los datos que cumplen con un parámetro particular.</p>
+<p>Si queremos obtener los datos de los pacientes menores a 60 años usamos:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(datosfinales, <span class="at">subset=</span>edad <span class="sc">&lt;</span><span class="dv">60</span>)</span></code></pre></div>
+<pre><code>##   origen vacunado fecha cobertura edad
+## 2    Rus     TRUE  1981 Pandemica   50
+## 4    USA     TRUE  1952        NA   20</code></pre>
+<p>Si queremos obtener los datos de los pacientes vacunados usamos:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(datosfinales, <span class="at">subset=</span>vacunado)</span></code></pre></div>
+<pre><code>##   origen vacunado fecha  cobertura edad
+## 2    Rus     TRUE  1981  Pandemica   50
+## 3    Mex     TRUE  2000 Estacional   80
+## 4    USA     TRUE  1952         NA   20</code></pre>
+<p>Estos resultados los podemos guardar en distantas variables</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data.html#cb137-1" aria-hidden="true" tabindex="-1"></a>pacientes_edad<span class="ot">&lt;-</span> <span class="fu">subset</span>(datosfinales, <span class="at">subset=</span>edad <span class="sc">&lt;</span><span class="dv">60</span>)</span>
+<span id="cb137-2"><a href="data.html#cb137-2" aria-hidden="true" tabindex="-1"></a>pacientes_edad</span></code></pre></div>
+<pre><code>##   origen vacunado fecha cobertura edad
+## 2    Rus     TRUE  1981 Pandemica   50
+## 4    USA     TRUE  1952        NA   20</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data.html#cb139-1" aria-hidden="true" tabindex="-1"></a>pacientes_vacunados<span class="ot">&lt;-</span> <span class="fu">subset</span>(datosfinales, <span class="at">subset=</span>vacunado)</span>
+<span id="cb139-2"><a href="data.html#cb139-2" aria-hidden="true" tabindex="-1"></a>pacientes_vacunados</span></code></pre></div>
+<pre><code>##   origen vacunado fecha  cobertura edad
+## 2    Rus     TRUE  1981  Pandemica   50
+## 3    Mex     TRUE  2000 Estacional   80
+## 4    USA     TRUE  1952         NA   20</code></pre>
+</div>
+<div id="ejercicio-2" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Ejercicio</h2>
+<p>Creamos vectores con los valores para el nuevo data.frame</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data.html#cb141-1" aria-hidden="true" tabindex="-1"></a>nombre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Margarita&quot;</span>, <span class="st">&quot;Ruben&quot;</span>, <span class="st">&quot;Daniel&quot;</span>)</span>
+<span id="cb141-2"><a href="data.html#cb141-2" aria-hidden="true" tabindex="-1"></a>apellido <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sanchez&quot;</span>, <span class="st">&quot;Garcia&quot;</span>, <span class="st">&quot;Sancho&quot;</span>, <span class="st">&quot;Alfara&quot;</span>)</span>
+<span id="cb141-3"><a href="data.html#cb141-3" aria-hidden="true" tabindex="-1"></a>edad <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">25</span>, <span class="dv">49</span>, <span class="dv">52</span>)</span>
+<span id="cb141-4"><a href="data.html#cb141-4" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;HOMBRE&quot;</span>, <span class="st">&quot;MUJER&quot;</span>, <span class="st">&quot;HOMBRE&quot;</span>, <span class="st">&quot;HOMBRE&quot;</span>)</span>
+<span id="cb141-5"><a href="data.html#cb141-5" aria-hidden="true" tabindex="-1"></a>hijos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<p>Creamos un data.frame con la ayuda de <code>data.frame()</code></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data.html#cb142-1" aria-hidden="true" tabindex="-1"></a>censo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(nombre, apellido, edad, sexo, hijos)</span>
+<span id="cb142-2"><a href="data.html#cb142-2" aria-hidden="true" tabindex="-1"></a>censo</span></code></pre></div>
+<pre><code>##      nombre apellido edad   sexo hijos
+## 1      Juan  Sanchez   32 HOMBRE     1
+## 2 Margarita   Garcia   25  MUJER     0
+## 3     Ruben   Sancho   49 HOMBRE     3
+## 4    Daniel   Alfara   52 HOMBRE     4</code></pre>
+<p>Para ver el encabezado del data.frame, usamos <code>head()</code></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(censo)</span></code></pre></div>
+<pre><code>##      nombre apellido edad   sexo hijos
+## 1      Juan  Sanchez   32 HOMBRE     1
+## 2 Margarita   Garcia   25  MUJER     0
+## 3     Ruben   Sancho   49 HOMBRE     3
+## 4    Daniel   Alfara   52 HOMBRE     4</code></pre>
+<p>Revisamos la estrucutra del data.frame</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(censo)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  5 variables:
+##  $ nombre  : chr  &quot;Juan&quot; &quot;Margarita&quot; &quot;Ruben&quot; &quot;Daniel&quot;
+##  $ apellido: chr  &quot;Sanchez&quot; &quot;Garcia&quot; &quot;Sancho&quot; &quot;Alfara&quot;
+##  $ edad    : num  32 25 49 52
+##  $ sexo    : chr  &quot;HOMBRE&quot; &quot;MUJER&quot; &quot;HOMBRE&quot; &quot;HOMBRE&quot;
+##  $ hijos   : num  1 0 3 4</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(censo)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Conocer el número de filas y columnas con <code>dim()</code></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(censo)</span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+<p>Usamos <code>nrow()</code> para obtener el número de filas</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(censo)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Usamos <code>ncol()</code> para obtener el número de columnas</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(censo)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Conocer los nombres de las variables (del encabezado)</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(censo)</span></code></pre></div>
+<pre><code>## [1] &quot;nombre&quot;   &quot;apellido&quot; &quot;edad&quot;     &quot;sexo&quot;     &quot;hijos&quot;</code></pre>
+<p>Cambiar el nombre de las columnas en la tabla usando <code>names()</code>.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(censo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Apellido&quot;</span>, <span class="st">&quot;Edad&quot;</span>, <span class="st">&quot;Sexo&quot;</span>, <span class="st">&quot;Hijos&quot;</span>)</span>
+<span id="cb158-2"><a href="data.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(censo)</span></code></pre></div>
+<pre><code>## [1] &quot;Nombre&quot;   &quot;Apellido&quot; &quot;Edad&quot;     &quot;Sexo&quot;     &quot;Hijos&quot;</code></pre>
+<p>Para asignar diferentes nombres a las columnas y filas de <code>censo</code> también podemos usar <code>colnames</code> y <code>rownames</code>.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(censo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Apellido&quot;</span>, <span class="st">&quot;Edad&quot;</span>, <span class="st">&quot;Sexo&quot;</span>, <span class="st">&quot;Número_Hijos&quot;</span>)</span>
+<span id="cb160-2"><a href="data.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(censo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID1&quot;</span>, <span class="st">&quot;ID2&quot;</span>, <span class="st">&quot;ID3&quot;</span>, <span class="st">&quot;ID4&quot;</span>)</span>
+<span id="cb160-3"><a href="data.html#cb160-3" aria-hidden="true" tabindex="-1"></a>censo</span></code></pre></div>
+<pre><code>##        Nombre Apellido Edad   Sexo Número_Hijos
+## ID1      Juan  Sanchez   32 HOMBRE            1
+## ID2 Margarita   Garcia   25  MUJER            0
+## ID3     Ruben   Sancho   49 HOMBRE            3
+## ID4    Daniel   Alfara   52 HOMBRE            4</code></pre>
+<div id="selección-de-elementos" class="section level3" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Selección de Elementos</h3>
+<p>El acceso a los elementos que se encuentran en un data.frame es muy similar al de los datos de una matriz.</p>
+<p>Acceder a los datos de las filas 2 a la 4:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data.html#cb162-1" aria-hidden="true" tabindex="-1"></a>censo[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, ]</span></code></pre></div>
+<pre><code>##        Nombre Apellido Edad   Sexo Número_Hijos
+## ID2 Margarita   Garcia   25  MUJER            0
+## ID3     Ruben   Sancho   49 HOMBRE            3
+## ID4    Daniel   Alfara   52 HOMBRE            4</code></pre>
+<p>Acceder a los datos de la columna 3.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data.html#cb164-1" aria-hidden="true" tabindex="-1"></a>censo[, <span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 32 25 49 52</code></pre>
+<p>También podemos referirnos a la columna por su nombre:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data.html#cb166-1" aria-hidden="true" tabindex="-1"></a>censo<span class="sc">$</span>Nombre</span></code></pre></div>
+<pre><code>## [1] &quot;Juan&quot;      &quot;Margarita&quot; &quot;Ruben&quot;     &quot;Daniel&quot;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importación-y-exportación-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": null,
+"position": "fixed"
+});
+});
+</script>
+
+</body>
+
+</html>

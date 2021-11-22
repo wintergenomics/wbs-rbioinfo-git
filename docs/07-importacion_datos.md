@@ -695,7 +695,7 @@ tabla_cancer<-read_table("breast-cancer-wis.data")
 
 ```
 ## 
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   `1000025,5,1,1,1,2,1,3,1,1,2` = col_character()
 ## )
@@ -776,7 +776,7 @@ bcancer_tabla <- read_csv("bcancer.csv")
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (1): b_nuc
 ## dbl (10): id, clump_t, u_csize, u_cshape, m_adh, spcs, b_chr, n_nuc, mit, class
@@ -784,8 +784,8 @@ bcancer_tabla <- read_csv("bcancer.csv")
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -794,7 +794,7 @@ head(bcancer_tabla)
 ```
 
 ```
-## # A tibble: 6 x 11
+## # A tibble: 6 × 11
 ##        id clump_t u_csize u_cshape m_adh  spcs b_nuc b_chr n_nuc   mit class
 ##     <dbl>   <dbl>   <dbl>    <dbl> <dbl> <dbl> <chr> <dbl> <dbl> <dbl> <dbl>
 ## 1 1000025       5       1        1     1     2 1         3     1     1     2
@@ -821,7 +821,7 @@ head(bcancer_tabla)
 ```
 
 ```
-## # A tibble: 6 x 11
+## # A tibble: 6 × 11
 ##        id clump_t u_csize u_cshape m_adh  spcs b_nuc b_chr n_nuc   mit class
 ##     <dbl>   <dbl>   <dbl>    <dbl> <dbl> <dbl> <chr> <dbl> <dbl> <dbl> <dbl>
 ## 1 1000025       5       1        1     1     2 1         3     1     1     2

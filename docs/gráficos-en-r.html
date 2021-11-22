@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 9 Gráficos en R | Winter Bioinformatics School</title>
+  <meta name="description" content="Capítulo 9 Gráficos en R | Winter Bioinformatics School" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 9 Gráficos en R | Winter Bioinformatics School" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="wintergenomics/wbs-rbioinfo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 9 Gráficos en R | Winter Bioinformatics School" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="instalación-de-paqueterías.html"/>
+<link rel="next" href="heatmaps.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Información del curso</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#formato-del-curso"><i class="fa fa-check"></i>Formato del curso</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quién-es-nuestra-audiencia"><i class="fa fa-check"></i>¿Quién es nuestra audiencia?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#pre-requisitos"><i class="fa fa-check"></i>Pre-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="lenguajes-y-principios-de-programación.html"><a href="lenguajes-y-principios-de-programación.html"><i class="fa fa-check"></i><b>1</b> Lenguajes y principios de programación</a></li>
+<li class="chapter" data-level="2" data-path="introducción-a-r-y-rstudio-para-bioinformática.html"><a href="introducción-a-r-y-rstudio-para-bioinformática.html"><i class="fa fa-check"></i><b>2</b> Introducción a R y RStudio para bioinformática</a></li>
+<li class="chapter" data-level="3" data-path="objetos.html"><a href="objetos.html"><i class="fa fa-check"></i><b>3</b> Objetos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="objetos.html"><a href="objetos.html#creación-de-objetos"><i class="fa fa-check"></i><b>3.1</b> Creación de objetos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="objetos.html"><a href="objetos.html#ejercicio"><i class="fa fa-check"></i><b>3.1.1</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="objetos.html"><a href="objetos.html#tipos-de-datos-en-r"><i class="fa fa-check"></i><b>3.2</b> Tipos de datos en R</a></li>
+<li class="chapter" data-level="3.3" data-path="objetos.html"><a href="objetos.html#tipos-de-objetos-en-r"><i class="fa fa-check"></i><b>3.3</b> Tipos de objetos en R</a></li>
+<li class="chapter" data-level="3.4" data-path="objetos.html"><a href="objetos.html#atributos-de-los-objetos"><i class="fa fa-check"></i><b>3.4</b> Atributos de los objetos</a></li>
+<li class="chapter" data-level="3.5" data-path="objetos.html"><a href="objetos.html#operadores"><i class="fa fa-check"></i><b>3.5</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="objetos.html"><a href="objetos.html#operadores-artiméticos"><i class="fa fa-check"></i><b>3.5.1</b> Operadores artiméticos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="objetos.html"><a href="objetos.html#operadores-relacionales"><i class="fa fa-check"></i><b>3.5.2</b> Operadores Relacionales</a></li>
+<li class="chapter" data-level="3.5.3" data-path="objetos.html"><a href="objetos.html#operadores-lógicos"><i class="fa fa-check"></i><b>3.5.3</b> Operadores Lógicos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>4</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="vectores.html"><a href="vectores.html#tipo-de-datos-de-los-vectores"><i class="fa fa-check"></i><b>4.1</b> Tipo de datos de los vectores</a></li>
+<li class="chapter" data-level="4.2" data-path="vectores.html"><a href="vectores.html#construcción-de-vectores-secuenciales"><i class="fa fa-check"></i><b>4.2</b> Construcción de vectores secuenciales</a></li>
+<li class="chapter" data-level="4.3" data-path="vectores.html"><a href="vectores.html#manejo-de-vectores"><i class="fa fa-check"></i><b>4.3</b> Manejo de vectores</a></li>
+<li class="chapter" data-level="4.4" data-path="vectores.html"><a href="vectores.html#operaciones-con-vectores"><i class="fa fa-check"></i><b>4.4</b> Operaciones con vectores</a></li>
+<li class="chapter" data-level="4.5" data-path="vectores.html"><a href="vectores.html#combinación-de-vectores"><i class="fa fa-check"></i><b>4.5</b> Combinación de vectores</a></li>
+<li class="chapter" data-level="4.6" data-path="vectores.html"><a href="vectores.html#funciones-en-vectores"><i class="fa fa-check"></i><b>4.6</b> Funciones en vectores</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="matrices.html"><a href="matrices.html#estructura-de-una-matriz"><i class="fa fa-check"></i><b>5.1</b> Estructura de una matriz</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html#creación-de-una-matriz"><i class="fa fa-check"></i><b>5.2</b> Creación de una matriz</a></li>
+<li class="chapter" data-level="5.3" data-path="matrices.html"><a href="matrices.html#acceder-a-los-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.3</b> Acceder a los elementos de una matriz</a></li>
+<li class="chapter" data-level="5.4" data-path="matrices.html"><a href="matrices.html#modificar-elementos-de-una-matriz"><i class="fa fa-check"></i><b>5.4</b> Modificar elementos de una matriz</a></li>
+<li class="chapter" data-level="5.5" data-path="matrices.html"><a href="matrices.html#ejercicio-1"><i class="fa fa-check"></i><b>5.5</b> Ejercicio</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>6</b> Data.frames</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data.html"><a href="data.html#características-de-los-data.frames"><i class="fa fa-check"></i><b>6.1</b> Características de los data.frames</a></li>
+<li class="chapter" data-level="6.2" data-path="data.html"><a href="data.html#creación-de-un-data.frame"><i class="fa fa-check"></i><b>6.2</b> Creación de un data.frame</a></li>
+<li class="chapter" data-level="6.3" data-path="data.html"><a href="data.html#extracción-de-datos-de-un-data.frame"><i class="fa fa-check"></i><b>6.3</b> Extracción de datos de un data.frame</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data.html"><a href="data.html#extracción-de-datos-por-columna"><i class="fa fa-check"></i><b>6.3.1</b> Extracción de datos por columna</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data.html"><a href="data.html#extracción-de-datos-por-filas"><i class="fa fa-check"></i><b>6.3.2</b> Extracción de datos por filas</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#combinar-data.frames"><i class="fa fa-check"></i><b>6.4</b> Combinar data.frames</a></li>
+<li class="chapter" data-level="6.5" data-path="data.html"><a href="data.html#subset-de-datos"><i class="fa fa-check"></i><b>6.5</b> Subset de datos</a></li>
+<li class="chapter" data-level="6.6" data-path="data.html"><a href="data.html#ejercicio-2"><i class="fa fa-check"></i><b>6.6</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="data.html"><a href="data.html#selección-de-elementos"><i class="fa fa-check"></i><b>6.6.1</b> Selección de Elementos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html"><i class="fa fa-check"></i><b>7</b> Importación y exportación de datos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#tipos-de-datos-que-puedo-importar-y-exportar"><i class="fa fa-check"></i><b>7.1</b> Tipos de datos que puedo importar y exportar</a></li>
+<li class="chapter" data-level="7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#de-dónde-puedo-obtener-los-datos"><i class="fa fa-check"></i><b>7.2</b> ¿De dónde puedo obtener los datos?</a></li>
+<li class="chapter" data-level="7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#cuáles-son-las-diferencias-entre-r-base-y-las-paqueterías-ampliadas"><i class="fa fa-check"></i><b>7.3</b> ¿Cuáles son las diferencias entre R base y las paqueterías ampliadas?</a></li>
+<li class="chapter" data-level="7.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#estableciendo-nuestro-directorio-de-trabajo"><i class="fa fa-check"></i><b>7.4</b> Estableciendo nuestro directorio de trabajo</a></li>
+<li class="chapter" data-level="7.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos"><i class="fa fa-check"></i><b>7.5</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-de-los-datasets-de-r"><i class="fa fa-check"></i><b>7.5.1</b> Importar datos de los datasets de R</a></li>
+<li class="chapter" data-level="7.5.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importar-datos-desde-internet"><i class="fa fa-check"></i><b>7.5.2</b> Importar datos desde internet</a></li>
+<li class="chapter" data-level="7.5.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-archivos-csv"><i class="fa fa-check"></i><b>7.5.3</b> Exportar archivos CSV</a></li>
+<li class="chapter" data-level="7.5.4" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-csv"><i class="fa fa-check"></i><b>7.5.4</b> Archivos CSV</a></li>
+<li class="chapter" data-level="7.5.5" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-txt"><i class="fa fa-check"></i><b>7.5.5</b> Archivos TXT</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#archivos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6</b> Archivos xlsx o de Excel</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#importación-de-datos-xlsx-o-de-excel"><i class="fa fa-check"></i><b>7.6.1</b> Importación de datos xlsx o de Excel</a></li>
+<li class="chapter" data-level="7.6.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportación-de-datos-en-excel"><i class="fa fa-check"></i><b>7.6.2</b> Exportación de datos en Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#ejercicio-3"><i class="fa fa-check"></i><b>7.7</b> Ejercicio</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-txt"><i class="fa fa-check"></i><b>7.7.1</b> Exportar como TXT</a></li>
+<li class="chapter" data-level="7.7.2" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#exportar-como-csv"><i class="fa fa-check"></i><b>7.7.2</b> Exportar como CSV</a></li>
+<li class="chapter" data-level="7.7.3" data-path="importación-y-exportación-de-datos.html"><a href="importación-y-exportación-de-datos.html#argumentos-al-exportar"><i class="fa fa-check"></i><b>7.7.3</b> Argumentos al exportar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html"><i class="fa fa-check"></i><b>8</b> Instalación de paqueterías</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-cran"><i class="fa fa-check"></i><b>8.1</b> Paqueterías de CRAN</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueteria-ggplot2"><i class="fa fa-check"></i><b>8.1.1</b> Instalación de paqueteria ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-bioconductor"><i class="fa fa-check"></i><b>8.2</b> Paqueterías de Bioconductor</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-biocmanager"><i class="fa fa-check"></i><b>8.2.1</b> Instalación de BiocManager</a></li>
+<li class="chapter" data-level="8.2.2" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#instalación-de-paqueterías-de-bioconductor."><i class="fa fa-check"></i><b>8.2.2</b> Instalación de paqueterías de Bioconductor.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="instalación-de-paqueterías.html"><a href="instalación-de-paqueterías.html#paqueterías-de-github"><i class="fa fa-check"></i><b>8.3</b> Paqueterías de GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html"><i class="fa fa-check"></i><b>9</b> Gráficos en R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#tipos-de-gráficos-en-r"><i class="fa fa-check"></i><b>9.1</b> Tipos de gráficos en R</a></li>
+<li class="chapter" data-level="9.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paqueterías-para-graficar-en-r"><i class="fa fa-check"></i><b>9.2</b> Paqueterías para graficar en R</a></li>
+<li class="chapter" data-level="9.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#gráficos-de-base-r"><i class="fa fa-check"></i><b>9.3</b> Gráficos de base R</a></li>
+<li class="chapter" data-level="9.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#paletas-de-colores-en-r"><i class="fa fa-check"></i><b>9.4</b> Paletas de colores en R</a></li>
+<li class="chapter" data-level="9.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#ggplot2"><i class="fa fa-check"></i><b>9.5</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#scatterplots"><i class="fa fa-check"></i><b>9.5.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="9.5.2" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#rcolorbrewer"><i class="fa fa-check"></i><b>9.5.2</b> RcolorBrewer</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#múltiples-gráficos-en-una-sola-imagen"><i class="fa fa-check"></i><b>9.5.3</b> Múltiples gráficos en una sola imagen</a></li>
+<li class="chapter" data-level="9.5.4" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#histogramas"><i class="fa fa-check"></i><b>9.5.4</b> Histogramas</a></li>
+<li class="chapter" data-level="9.5.5" data-path="gráficos-en-r.html"><a href="gráficos-en-r.html#boxplots"><i class="fa fa-check"></i><b>9.5.5</b> Boxplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="heatmaps.html"><a href="heatmaps.html"><i class="fa fa-check"></i><b>10</b> Heatmaps</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Winter Bioinformatics School</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gráficos-en-r" class="section level1" number="9">
+<h1><span class="header-section-number">Capítulo 9</span> Gráficos en R</h1>
+<p>R es un lenguaje de programación y entorno computacional dedicado a la estadística que dispone de múltiples funciones diseñadas para la representación gráfica de datos.</p>
+<p>Revisa la presentación completa <a href="https://drive.google.com/u/0/uc?id=1t_zGzI25aQp3j3ffs1RnIcyUzgee7azf&amp;export=download">aquí</a></p>
+<div id="tipos-de-gráficos-en-r" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Tipos de gráficos en R</h2>
+<p>Existe una gran variedad de gráficos que pueden utilizarse según el tipo de datos que se tengan.</p>
+<p><img src="https://i.pinimg.com/originals/77/e3/7e/77e37ee70c22a193b429d8cbf6dfd0cb.png"/>
+<a href="https://www.r-graph-gallery.com/">Fuente</a></p>
+</div>
+<div id="paqueterías-para-graficar-en-r" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Paqueterías para graficar en R</h2>
+<p>Existen diversas paqueterías en R que facilitan la creación de gráficos. Cada paquetería permite crear diversos tipos de gráficos.</p>
+<ul>
+<li><strong><a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2">graphics</a></strong></li>
+<li><a href="https://cran.r-project.org/package=grid">grid</a></li>
+<li><a href="https://cran.r-project.org/web/packages/lattice/lattice.pdf">Lattice</a></li>
+<li><strong><a href="https://cran.r-project.org/package=ggplot2">ggplot2</a></strong></li>
+<li><a href="https://cran.r-project.org/package=gganimate">gganimate</a></li>
+<li><a href="https://cran.r-project.org/package=highcharter">Highcharts</a></li>
+<li><a href="https://github.com/bbc/bbplot">bbplot</a></li>
+<li><a href="https://cran.r-project.org/package=ggfortify">ggfortify</a></li>
+</ul>
+</div>
+<div id="gráficos-de-base-r" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Gráficos de base R</h2>
+<p>R cuenta con el paquete base de graphics para la construcción de gráficos. La función <code>plot</code> es la función básica que permite crear:</p>
+<ul>
+<li>Líneas</li>
+<li>Barras</li>
+<li>Boxplots</li>
+<li>Matrices de dispersión</li>
+</ul>
+</div>
+<div id="paletas-de-colores-en-r" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Paletas de colores en R</h2>
+<p>Los colores son uno de los elementos esenciales de un gráfico. Forman parte de la estética y por tanto, los podemos utilizar tanto para representar variables, como para destacar elementos dentro de la visualización.</p>
+<p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">Aquí</a> y <a href="https://htmlcolorcodes.com/">aquí</a> puedes revisar los colores disponibles en R que puedes usar en tus gráficas.</p>
+</div>
+<div id="ggplot2" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> ggplot2</h2>
+<p><a href="https://cran.r-project.org/package=ggplot2">ggplot2</a> es una de las paqueterías más populares en R para crear una gran variedad de gráficos. <code>ggplot2</code> es un sistema para la creación declarativa de gráficos basado en la gramática de gráficos. En esta gramática, se separan los elementos o las partes de un gráfico en diferentes capas o layers, y así es más fácil modificarlos.</p>
+<p><code>ggplot2</code> funciona a través de la grámatica de gráficos donde se dan los datos, las variables que queremos a graficar y la geometría deseada.</p>
+<p>Instalación de ggplot2</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="gráficos-en-r.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb235-2"><a href="gráficos-en-r.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<p>Cargar la librería de trabajo</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="gráficos-en-r.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Importamos el set de datos que puedes descargar de <a href="https://drive.google.com/u/0/uc?id=1KXYsccyizof0M1qd1WoA0cWJVaqZq_H2&amp;export=download">aquí</a></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="gráficos-en-r.html#cb237-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;BRCA_1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="gráficos-en-r.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>##     Patient_ID Age Gender  Protein1 Protein2  Protein3  Protein4   Protein5
+## 1 TCGA-D8-A1XD  36 FEMALE  0.080353  0.42638  0.547150  0.273680 -0.8377779
+## 2 TCGA-EW-A1OX  43 FEMALE -0.420320  0.57807  0.614470 -0.031505  3.9312819
+## 3 TCGA-A8-A079  69 FEMALE  0.213980  1.31140 -0.327470 -0.234260 12.0651683
+## 4 TCGA-D8-A1XR  56 FEMALE  0.345090 -0.21147 -0.193040  0.124270  1.3747799
+## 5 TCGA-BH-A0BF  56 FEMALE  0.221550  1.90680  0.520450 -0.311990  3.5984373
+## 6 TCGA-AO-A1KQ  84   MALE -0.081872  1.72410 -0.057335  0.043025 10.4367737
+##   Protein6   Protein7  Protein8 Tumour_Stage                     Histology
+## 1 1.121232  1.2252707  1.693330          III Infiltrating Ductal Carcinoma
+## 2 4.004814  3.7966065  3.818823           II            Mucinous Carcinoma
+## 3 8.089310  7.0638903  7.970331          III Infiltrating Ductal Carcinoma
+## 4 2.158426 10.8775737 10.461724           II Infiltrating Ductal Carcinoma
+## 5 2.138539  0.5366344  1.543580           II Infiltrating Ductal Carcinoma
+## 6 9.154762  5.3596392  3.372255          III Infiltrating Ductal Carcinoma
+##   ER.status PR.status HER2.status                Surgery_type Date_of_Surgery
+## 1  Positive  Positive    Negative Modified Radical Mastectomy       15-Jan-17
+## 2  Positive  Positive    Negative                  Lumpectomy       26-Apr-17
+## 3  Positive  Positive    Negative                       Other       08-sep-17
+## 4  Positive  Positive    Negative Modified Radical Mastectomy       25-Jan-17
+## 5  Positive  Positive    Negative                       Other       06-may-17
+## 6  Positive  Positive    Negative Modified Radical Mastectomy       18-sep-17
+##   Date_of_Last_Visit Patient_Status
+## 1          19-jun-17          Alive
+## 2          09-nov-18           Dead
+## 3          09-jun-18          Alive
+## 4          12-jul-17          Alive
+## 5          27-jun-19           Dead
+## 6          15-nov-21          Alive</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="gráficos-en-r.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos)</span></code></pre></div>
+<pre><code>##  [1] &quot;Patient_ID&quot;         &quot;Age&quot;                &quot;Gender&quot;            
+##  [4] &quot;Protein1&quot;           &quot;Protein2&quot;           &quot;Protein3&quot;          
+##  [7] &quot;Protein4&quot;           &quot;Protein5&quot;           &quot;Protein6&quot;          
+## [10] &quot;Protein7&quot;           &quot;Protein8&quot;           &quot;Tumour_Stage&quot;      
+## [13] &quot;Histology&quot;          &quot;ER.status&quot;          &quot;PR.status&quot;         
+## [16] &quot;HER2.status&quot;        &quot;Surgery_type&quot;       &quot;Date_of_Surgery&quot;   
+## [19] &quot;Date_of_Last_Visit&quot; &quot;Patient_Status&quot;</code></pre>
+<p>Eliminar datos con NA</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="gráficos-en-r.html#cb242-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(datos)</span></code></pre></div>
+<div id="scatterplots" class="section level3" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Scatterplots</h3>
+<p>Vamos a crear un gráfico del tipo scatterplot muy básico con ggplot2.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="gráficos-en-r.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8)) <span class="sc">+</span> </span>
+<span id="cb243-2"><a href="gráficos-en-r.html#cb243-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Ahora vamos a colorear todos los puntos utilizando <code>geom_point(color)</code>.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="gráficos-en-r.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8)) <span class="sc">+</span> </span>
+<span id="cb244-2"><a href="gráficos-en-r.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">size=</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Con el argumento <code>color</code> coloreamos por estadío de tumor.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="gráficos-en-r.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb245-2"><a href="gráficos-en-r.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb245-3"><a href="gráficos-en-r.html#cb245-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb245-4"><a href="gráficos-en-r.html#cb245-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Para agregar las etiquetas de los ejes usamos <code>labs()</code>, mientras que <code>ggtitle()</code>permite agregar el título al gráfico como se muestra a continuación.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="gráficos-en-r.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb246-2"><a href="gráficos-en-r.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb246-3"><a href="gráficos-en-r.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb246-4"><a href="gráficos-en-r.html#cb246-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><code>shape</code> permite modificar la forma del punto. En este caso vamos a poner diferentes puntos según la especie de flor.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="gráficos-en-r.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span>Tumour_Stage, <span class="at">shape=</span>Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb247-2"><a href="gráficos-en-r.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb247-3"><a href="gráficos-en-r.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb247-4"><a href="gráficos-en-r.html#cb247-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb247-5"><a href="gráficos-en-r.html#cb247-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Cambiamos la posición de la leyenda en nuestro gráfico</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="gráficos-en-r.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb248-2"><a href="gráficos-en-r.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb248-3"><a href="gráficos-en-r.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb248-4"><a href="gráficos-en-r.html#cb248-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb248-5"><a href="gráficos-en-r.html#cb248-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb248-6"><a href="gráficos-en-r.html#cb248-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Otra opción para modificar los colores es utilizando <code>scale_colour_manual()</code>. Con este argumento indicamos los colores que queremos usar para nuestro gráfico basados en la paleta de colores.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="gráficos-en-r.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb249-2"><a href="gráficos-en-r.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb249-3"><a href="gráficos-en-r.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb249-4"><a href="gráficos-en-r.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb249-5"><a href="gráficos-en-r.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb249-6"><a href="gráficos-en-r.html#cb249-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb249-7"><a href="gráficos-en-r.html#cb249-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;mediumvioletred&quot;</span>, <span class="st">&quot;mediumturquoise&quot;</span>))</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="rcolorbrewer" class="section level3" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> RcolorBrewer</h3>
+<p>RcolorBrewer es una paquetería exclusiva de colores que podemos usar en nuestros gráficos.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="gráficos-en-r.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="gráficos-en-r.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
+<p>Conocer todas las paletas de colores disponibles en RColorBrewer.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="gráficos-en-r.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Vamos a elegir la paleta “Dark2” para personalizar nuestro gráfico. Usamos el argumento <code>scale_colour_brewer()</code> como se muestra a continuación</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="gráficos-en-r.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb253-2"><a href="gráficos-en-r.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb253-3"><a href="gráficos-en-r.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb253-4"><a href="gráficos-en-r.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb253-5"><a href="gráficos-en-r.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb253-6"><a href="gráficos-en-r.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb253-7"><a href="gráficos-en-r.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="múltiples-gráficos-en-una-sola-imagen" class="section level3" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Múltiples gráficos en una sola imagen</h3>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="gráficos-en-r.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Protein7, <span class="at">y =</span> Protein8, <span class="at">color=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb254-2"><a href="gráficos-en-r.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb254-3"><a href="gráficos-en-r.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Tumour_Stage)<span class="sc">+</span> </span>
+<span id="cb254-4"><a href="gráficos-en-r.html#cb254-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Proteina 7&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Proteina 8&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Scatterplot&quot;</span>)<span class="sc">+</span></span>
+<span id="cb254-5"><a href="gráficos-en-r.html#cb254-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb254-6"><a href="gráficos-en-r.html#cb254-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb254-7"><a href="gráficos-en-r.html#cb254-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb254-8"><a href="gráficos-en-r.html#cb254-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;mediumvioletred&quot;</span>, <span class="st">&quot;mediumturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb254-9"><a href="gráficos-en-r.html#cb254-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="histogramas" class="section level3" number="9.5.4">
+<h3><span class="header-section-number">9.5.4</span> Histogramas</h3>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="gráficos-en-r.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x=</span>Age))<span class="sc">+</span></span>
+<span id="cb255-2"><a href="gráficos-en-r.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">color=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb255-3"><a href="gráficos-en-r.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Colorear histogramas por género</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="gráficos-en-r.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">color=</span> Gender))<span class="sc">+</span></span>
+<span id="cb256-2"><a href="gráficos-en-r.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">fill=</span> <span class="st">&quot;White&quot;</span>)<span class="sc">+</span></span>
+<span id="cb256-3"><a href="gráficos-en-r.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()<span class="sc">+</span></span>
+<span id="cb256-4"><a href="gráficos-en-r.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Edad&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Histograma&quot;</span>)<span class="sc">+</span></span>
+<span id="cb256-5"><a href="gráficos-en-r.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="gráficos-en-r.html#cb257-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">fill=</span> Gender))<span class="sc">+</span></span>
+<span id="cb257-2"><a href="gráficos-en-r.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">color=</span> <span class="st">&quot;Black&quot;</span>, <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb257-3"><a href="gráficos-en-r.html#cb257-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()<span class="sc">+</span></span>
+<span id="cb257-4"><a href="gráficos-en-r.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Edad&quot;</span> ,<span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Histograma&quot;</span>)<span class="sc">+</span></span>
+<span id="cb257-5"><a href="gráficos-en-r.html#cb257-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)</span>
+<span id="cb257-6"><a href="gráficos-en-r.html#cb257-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-7"><a href="gráficos-en-r.html#cb257-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Accent&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb257-8"><a href="gráficos-en-r.html#cb257-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()<span class="sc">+</span></span>
+<span id="cb257-9"><a href="gráficos-en-r.html#cb257-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="boxplots" class="section level3" number="9.5.5">
+<h3><span class="header-section-number">9.5.5</span> Boxplots</h3>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="gráficos-en-r.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos)</span></code></pre></div>
+<pre><code>##  [1] &quot;Patient_ID&quot;         &quot;Age&quot;                &quot;Gender&quot;            
+##  [4] &quot;Protein1&quot;           &quot;Protein2&quot;           &quot;Protein3&quot;          
+##  [7] &quot;Protein4&quot;           &quot;Protein5&quot;           &quot;Protein6&quot;          
+## [10] &quot;Protein7&quot;           &quot;Protein8&quot;           &quot;Tumour_Stage&quot;      
+## [13] &quot;Histology&quot;          &quot;ER.status&quot;          &quot;PR.status&quot;         
+## [16] &quot;HER2.status&quot;        &quot;Surgery_type&quot;       &quot;Date_of_Surgery&quot;   
+## [19] &quot;Date_of_Last_Visit&quot; &quot;Patient_Status&quot;</code></pre>
+<p>Creamos un boxplot básico</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="gráficos-en-r.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein7, <span class="at">x=</span> Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb260-2"><a href="gráficos-en-r.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Personalizamos el boxplot</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="gráficos-en-r.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein7, <span class="at">x=</span> Tumour_Stage, <span class="at">fill=</span>Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb261-2"><a href="gráficos-en-r.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb261-3"><a href="gráficos-en-r.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cancer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb261-4"><a href="gráficos-en-r.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb261-5"><a href="gráficos-en-r.html#cb261-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Boxplot&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Proteína 7&quot;</span>, <span class="at">x=</span><span class="st">&quot;Estadío del tumor&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Colorear manualmente los boxplots</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="gráficos-en-r.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein7, <span class="at">x=</span> Tumour_Stage, <span class="at">fill=</span>Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb262-2"><a href="gráficos-en-r.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb262-3"><a href="gráficos-en-r.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb262-4"><a href="gráficos-en-r.html#cb262-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()<span class="sc">+</span></span>
+<span id="cb262-5"><a href="gráficos-en-r.html#cb262-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Boxplot&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Proteína 1&quot;</span>, <span class="at">x=</span><span class="st">&quot;Estadío del tumor&quot;</span>)<span class="sc">+</span></span>
+<span id="cb262-6"><a href="gráficos-en-r.html#cb262-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;navy&quot;</span>, <span class="st">&quot;mediumvioletred&quot;</span>, <span class="st">&quot;mediumturquoise&quot;</span>))</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Colorear utilizando paletas de colores</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="gráficos-en-r.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein1, <span class="at">x=</span> Tumour_Stage, <span class="at">fill=</span>Tumour_Stage)) <span class="sc">+</span> </span>
+<span id="cb263-2"><a href="gráficos-en-r.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb263-3"><a href="gráficos-en-r.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb263-4"><a href="gráficos-en-r.html#cb263-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Boxplot&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Proteína 1&quot;</span>, <span class="at">x=</span><span class="st">&quot;Estadío del tumor&quot;</span>)<span class="sc">+</span></span>
+<span id="cb263-5"><a href="gráficos-en-r.html#cb263-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb263-6"><a href="gráficos-en-r.html#cb263-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb263-7"><a href="gráficos-en-r.html#cb263-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Boxplots agrupados por mutaciones de HER2 y estadío de tumor</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="gráficos-en-r.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein7, <span class="at">x=</span> Tumour_Stage, <span class="at">fill=</span>HER2.status)) <span class="sc">+</span> </span>
+<span id="cb264-2"><a href="gráficos-en-r.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span> </span>
+<span id="cb264-3"><a href="gráficos-en-r.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>)<span class="sc">+</span></span>
+<span id="cb264-4"><a href="gráficos-en-r.html#cb264-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb264-5"><a href="gráficos-en-r.html#cb264-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb264-6"><a href="gráficos-en-r.html#cb264-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb264-7"><a href="gráficos-en-r.html#cb264-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Boxplot&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Proteína 17&quot;</span>, <span class="at">x=</span><span class="st">&quot;Estadío del tumor&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Multiples boxplots separados por mutaciones de HER2 y estadío de tumor</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="gráficos-en-r.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">y =</span> Protein7, <span class="at">x=</span> Tumour_Stage, <span class="at">fill=</span>HER2.status)) <span class="sc">+</span> </span>
+<span id="cb265-2"><a href="gráficos-en-r.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb265-3"><a href="gráficos-en-r.html#cb265-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>HER2.status)<span class="sc">+</span></span>
+<span id="cb265-4"><a href="gráficos-en-r.html#cb265-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;PiYG&quot;</span>)<span class="sc">+</span></span>
+<span id="cb265-5"><a href="gráficos-en-r.html#cb265-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb265-6"><a href="gráficos-en-r.html#cb265-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb265-7"><a href="gráficos-en-r.html#cb265-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Cáncer de mama&quot;</span>)<span class="sc">+</span></span>
+<span id="cb265-8"><a href="gráficos-en-r.html#cb265-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Boxplot&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Proteína 7&quot;</span>, <span class="at">x=</span><span class="st">&quot;Estadío del tumor&quot;</span>)</span></code></pre></div>
+<p><img src="09-graficos_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="instalación-de-paqueterías.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heatmaps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": null,
+"position": "fixed"
+});
+});
+</script>
+
+</body>
+
+</html>
