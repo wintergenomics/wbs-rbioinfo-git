@@ -1,5 +1,51 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 # Importación y exportación de datos
+
+R puede importar datos de una amplia variedad de tipos de archivo con las funciones en base además de que esta capacidad es ampliada con el uso de paqueterías específicas.
+
+## Tipos de datos que puedo importar y exportar
+Existen diversos tipos de datos que se pueden importar y exportar en R. Las tres fuentes más comunes para la importación o exportación de datos son:
+
+**Datos en formato texto (o tabulares)**
+- CSV: .csv (comma separated values o datos separados por comas)
+- TXT
+- Otros datos en formato texto
+
+**Formatos de otros programas (software propietario)**
+- EXCEL: .xls y .xlsx
+- SPSS: .sav y .por
+- STATA: .dta
+- SAS: .sas
+
+**Formatos propios de R**
+- R objects: .RData o .rda
+- Serialized R objects: .rds
+
+## ¿De dónde puedo obtener los datos?
+
+- Datos propios: son datos obtenidos mediante trabajo experimental por parte de mi grupo de trabajo o míos.
+- Datos de sets de datos precargados en R
+- Datos obtenidos de bases de datos en internet 
+
+Las paqueterías más utilizadas para la importación y exportación de datps son: 
+- r-base
+- readr
+- haven
+
+## ¿Cuáles son las diferencias entre R base y las paqueterías ampliadas?
+
+R tiene más de 20 años. Las funciones de R-base se construyeron pensando en  los estadísticos de hace 20 años (hoy se llamarían analistas de datos).  Modificar las funciones de R-base haría que el código antiguo dejase de funcionar, así que la mayoría de avances y mejoras se producen en las paqueterías.
+
+Las funciones de `readr` emulan las funciones equivalentes de R-base mejorándolas y haciéndolas más consistentes; por ejemplo para leer datos CSV la función de R-base es `read.csv()`; mientras que la función equivalente de "readr" es `read_csv()`. Las dos hacen lo mismo, leer datos en formato CSV, pero las nuevas funciones tienen algunas ventajas:
+- Son más rápidas
+- Encajan más en el workflow/paradigma de la investigación reproducible. 
+
+Algunas de las funciones de R-base heredan algunas opciones del sistema operativo y las variables de entorno, haciendo posible que un script que funciona en un ordenador no funcione en otro.
 
 ## Estableciendo nuestro directorio de trabajo
 
@@ -20,80 +66,221 @@ directory <- "/home/users/mydir"  #Mac OS o linux
 setwd(directory)
 ```
 
-## Importación de datos
-### Archivos CSV
-
-Importa archivos de texto plano con formato CSV (*coma-separated values*). Los datos los puedes descargar de [aquí](https://drive.google.com/u/0/uc?id=1TlR9xgKl7Laf8-SNwoq3W2MXkD19AQ9d&export=download). Recuerda guardarlos en la carpeta de trabajo que asignaste en el paso anterior.
-```{r, eval=F}
-datosRCSV <- read.csv("iris.csv")
+```{r}
+library(readr)
 ```
-```{r, eval=T, echo=F}
-datosRCSV <- read.csv("~/Downloads/iris.csv")
+
+Conocer más sobre las paqueterías
+```{r}
+help(package=readr) #Read Rectangular Text Data
+
+help(package= haven) #Importa y Exporta 'SPSS', 'Stata' y archivos 'SAS'
+```
+
+Visualiza la documentación de la función read_csv de la paquetería `readr`. 
+```{r}
+help(read_csv, package = "readr")
+```
+
+
+A veces es conveniente saber que package contiene una función. Podemos hacerlo con la función `find` para encontrar en qué paquetería está la función `help`.
+```{r}
+find("read_csv")
 ```
 
 ```{r}
-head(datosRCSV)
+find("read.csv")
 ```
+
+
+## Importación de datos
+
+### Importar datos de los datasets de R
+
+R contiene datasets que pueden ser utilizados directamente. Para dar un vistazo a los paquetes disponibles en R usamos `data()`
+
+Guardamos el listado de datasets en un data.frame llamado `sets`
+```{r}
+sets <- as.data.frame(data()[[3]])
+sets
+```
+
+Conocer la información de los paquetes disponibles 
+```{r}
+paquetes <- library(help = "datasets")
+head(paquetes$info[[2]])
+```
+
+Cargar sets de datos directamente de estas bases
+
+```{r}
+datos_R<- iris
+datos_R  
+```
+
+Conocer los nombres de las columnas 
+```{r}
+names(datos_R)
+```
+
+Visualizar las primeras filas de la tabla
+```{r}
+head(datos_R)
+```
+
+```{r}
+summary(iris)
+```
+
+
+### Importar datos desde internet 
+
+Esta base de datos de cáncer de mama se obtuvo de la Universidad de Wisconsin del Dr. William Wolberg. El conjunto de datos provienen de un estudio de cáncer de mama en Wisconsin. Hay 681 casos de tumores potencialmente cancerosos, de los cuales 238 son realmente malignos. Cada característica se evalúa en una escala del 1 al 10, siendo 1 el más cercano a benigno y 10 el más cercano a maligno. 
+
+Para descargar archivos de internet, usamos la función `download.file()`.
+
+```{r}
+help("download.file")
+```
+
+La función `download.file()` pide como argumento la url o la dirección de internet del archivo que queremos descargar y en dest, el nombre que tendrá el archivo en nuestra computadora.
+
+```{r}
+download.file(
+  url = "https://raw.githubusercontent.com/jboscomendoza/r-principiantes-bookdown/master/datos/breast-cancer-wis.data", 
+  dest = "breast-cancer-wis.data"
+)
+```
+
+```{r}
+tabla_cancer<-read_table("breast-cancer-wis.data")
+```
+
+```{r}
+bcancer <- read.table(file = "breast-cancer-wis.data", header = FALSE, sep = ",")
+```
+
+```{r}
+head(bcancer)
+```
+
+```{r}
+nombres <- c("id", "clump_t", "u_csize", "u_cshape", "m_adh", "spcs", "b_nuc", 
+             "b_chr", "n_nuc", "mit", "class")
+```
+
+```{r}
+bcancer <- read.table(file = "breast-cancer-wis.data", header = FALSE, sep = ",",
+                      col.names = nombres)
+
+```
+
+```{r}
+head(bcancer)
+```
+
+### Exportar archivos CSV 
+
+Vamos a guardar el data.frame `bcancer` como un archivo csv llamado **"bcancer.csv"** y **bcancer2.csv** utilizando el comando `write_._csv()` y `write.csv()` respectivamente. Las tablas se guardarán en nuestro directorio de trabajo actual.
+```{r, eval=F}
+write_csv(bcancer, file = "bcancer.csv")
+```
+
+```{r, eval=F}
+write.csv(bcancer, file= "bcancer2.csv")
+```
+
+
+### Archivos CSV
+
+También podemos trabajar con datos de archivos de texto de nuestra computadora. Importa archivos de texto plano con formato CSV (*coma-separated values*) que descargamos anteriormente. Usamos la función `read.csv` o `read_csv`.
+
+```{r, eval=F}
+bcancer_tabla <- read_csv("bcancer.csv")
+```
+```{r, eval=T, echo=F}
+bcancer_tabla <- read_csv("~/Downloads/bcancer.csv")
+```
+
+```{r}
+head(bcancer_tabla)
+```
+
+```{r}
+names(bcancer_tabla)
+```
+
+```{r}
+head(bcancer_tabla)
+```
+Algunas veces los datos tienen ciertos problemas que hay que arreglar para importar correctamente los datos a R. `read_csv()` tiene opciones que facilitan la importación de archivos CSV: 
+
+- `col_names`: `read_csv()` asume que la primera fila contiene los nombres de las variables. Esto puede cambiarse con **`col_names = FALSE`**. También puedes proveer los nombres a las variables (o columnas) con `col_names = c("X1", "X2")`
+
+- `skip`:`read_csv()` por defecto importa todas las filas del archivo, pero puedes hacer que comience a importar en la fila que quieras con `skip = n`
+
+- `na`: En algunos ficheros con datos tabulares, los NAs se especifican con algún carácter. Esto podemos tratarlo al leer los datos con el argumento `na = "xxx"`
 
 
 ### Archivos TXT
 
-Importa archivos de texto plano con formato de tabla (data.frame). Los datos los puedes descargar de [aquí](https://drive.google.com/u/0/uc?id=18Cgt4ret3utAuk4w2_jl8RIbKxteulIO&export=download). Recuerda guardarlos en la carpeta de trabajo.
+Importa y exporta los archivos de texto plano con formato de tabla (data.frame). Exportemos la tabla anterior como archivo txt usando `write.table`.
+
+```{r,  eval=F}
+write.table(x = bcancer, file = "bcancer.txt", sep = ",", 
+            row.names = FALSE, col.names = TRUE)
+```
+
+Para importar un archivo txt, usamos `read.table`. El argumento `header` permite incorporar el encabezado del archivo que queremos importar mientras que el argumento `sep`. En el siguiente comando, el argumento `sep=","` le indica a R que nuestros datos están separados por el símbolo **","** o *coma*.
 ```{r, eval=F}
-datosRT <- read.table("iris.txt")
+bcancer_txt <- read.table("bcancer.txt")
 ```
 
 ```{r, eval=T, echo=F}
-datosRT <- read.table("~/Downloads/iris.txt")
+bcancer_txt <- read.table("~/Downloads/bcancer.txt", header=TRUE, sep = ",")
 ```
 ```{r}
-head(datosRT)
+head(bcancer_txt)
 ```
 
-Notamos que los encabezados no forman parte de la tabla y que R genera sus propios encabezados. Para evitar esto, si el archivo que queremos importar contiene encabezados, el argumento `header` permite incorporar el encabezado del archivo que queremos importar.
-```{r, eval=F}
-datosRT <- read.table("iris.txt", header=TRUE)
+## Archivos xlsx o de Excel
+
+Para importar o exportar archivos de Excel, es necesario utilizar la paquetería `"openxlsx"` que permite trabajar con documentos de Excel en R. La instalación de paqueterías se realiza sólo una vez. Una vez que la librería o paquetería esté instalada, puedes omitir este paso.
+
+```{r, eval=FALSE}
+install.packages("openxlsx", dependencies = TRUE)
+```
+
+Ahora cargaremos las paqueterías. El llamado de librerías deberá hacerse cada que inicies una nueva sesión en R.
+```{r}
+library(openxlsx)
+```
+
+### Importación de datos xlsx o de Excel
+
+Importaremos un nuevo set de datos de Excel que puedes descargar de [aquí](https://drive.google.com/u/0/uc?id=1DmLiZZGq_MVkLYCMZ7rdeHydUZAoP-YW&export=download). Recuerda guardarlos en tu carpeta de trabajo.
+
+```{r, eval=FALSE}
+datosXLSX <- read.xlsx("iris.xlsx")
 ```
 
 ```{r, eval=T, echo=F}
-datosRT <- read.table("~/Downloads/iris.txt", header=TRUE)
+datosXLSX <- read.xlsx("~/Downloads/iris.xlsx")
 ```
 ```{r}
-head(datosRT)
+head(datosXLSX)
 ```
 
+### Exportación de datos en Excel
 
-Importemos este [nuevo set de datos](https://drive.google.com/u/0/uc?id=1D88k0cC5TeALDWbvRmLh07g2d65ImLHh&export=download). 
-
+Vamos a exportar el data.frame `datosXLSX` que creamos anteriormente como un archivo de Excel llamado **"datos.xlsx"** utilizando el comando `write.xlsx()`. El archivo se guardará en nuestro directorio de trabajo  actual.
 
 ```{r, eval=F}
-datosRT <- read.table("iris2.txt", header=TRUE)
+write.xlsx(tablaDE, "datos.xlsx")
 ```
 
-```{r, eval=T, echo=F}
-datosRT <- read.table("~/Downloads/iris2.txt", header=TRUE)
-```
-```{r}
-head(datosRT)
-```
-Los datos no se importaron correctamente y están separados por el símbolo **"|"** o *pipe*.
 
-Los archivos *csv* están separados por comas y generalmente, los archivos *txt* están separados por tabulaciones. Para indicarle a R el tipo de separación que tiene nuestro archivo, usamos el argumento `sep`.
-
-En el siguiente comando, el argumento `sep="|"` le indica a R que nuestros datos están separados por el símbolo **"|"** o *pipe*.
-
-```{r, eval=F}
-datosRT <- read.table("iris2.txt", header=TRUE, sep = "|")
-```
-
-```{r, eval=T, echo=F}
-datosRT <- read.table("~/Downloads/iris2.txt", header=TRUE, sep = "|")
-```
-```{r}
-head(datosRT)
-```
-
-## Exportación de datos
+## Ejercicio
 
 Vamos a crear un data.frame para practicar cómo exportar los datos.
 ```{r}
@@ -133,55 +320,7 @@ Para indicar la separación del archivo utilizamos `sep`. Vamos a usar la tabula
 write.csv(tablaDE, "datos2.csv", row.names=FALSE, sep="\t")
 ```
 
-
 Para suprimir los nombres de las columnas, usamos `col.names=FALSE`
 ```{r, eval=F}
 write.csv(tablaDE, "datos3.csv", row.names=FALSE, sep="\t", col.names=FALSE)
 ```
-
-
-
-## Archivos xlsx o de Excel
-
-Para importar o exportar archivos de Excel, es necesario utilizar la paquetería `"openxlsx"` que nos permite trabajar con documentos de Excel en R. La instalación de paqueterías se realiza sólo una vez. Una vez que la librería o paquetería esté instalada, puedes omitir este paso.
-
-```{r, eval=FALSE}
-install.packages("openxlsx", dependencies = TRUE)
-```
-
-Ahora cargaremos la paquetería. El llamado de librerías deberá hacerse cada que inicies una nueva sesión en R.
-```{r}
-library(openxlsx)
-```
-
-El siguiente comando te permite leer y conocer más sobre las funciones que ofrece esta paquetería.
-```{r}
-?openxlsx
-```
-
-
-### Importación de datos xlsx o de Excel
-
-Importaremos un nuevo set de datos de Excel que puedes descargar de [aquí](https://drive.google.com/u/0/uc?id=1DmLiZZGq_MVkLYCMZ7rdeHydUZAoP-YW&export=download). Recuerda guardarlos en tu carpeta de trabajo.
-
-```{r, eval=FALSE}
-datosXLSX <- read.xlsx("iris.xlsx")
-```
-
-```{r, eval=T, echo=F}
-datosXLSX <- read.xlsx("~/Downloads/iris.xlsx")
-```
-```{r}
-head(datosRT)
-```
-
-
-### Exportación de datos en Excel
-
-Vamos a exportar el data.frame `tablaDE` que creamos anteriormente como un archivo de Excel llamado **"datos.xlsx"** utilizando el comando `write.xlsx()`. El archivo se guardará en nuestro directorio de trabajo  actual.
-
-```{r, eval=F}
-write.xlsx(tablaDE, "datos.xlsx")
-```
-
-
